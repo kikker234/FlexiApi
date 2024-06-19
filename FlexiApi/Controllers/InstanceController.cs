@@ -1,4 +1,5 @@
-﻿using Business;
+﻿using Auth;
+using Business;
 using Business.Services;
 using Data.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -18,7 +19,7 @@ public class InstanceController : Controller
     }
 
     [HttpPost]
-    [Authorize]
+    [Auth.Authorize]
     public IActionResult CreateInstance([FromBody] Instance instance)
     {
         if (_instanceServices.CreateInstance(instance))

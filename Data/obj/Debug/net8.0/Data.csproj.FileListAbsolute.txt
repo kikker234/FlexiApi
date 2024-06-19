@@ -12,3 +12,4 @@ C:\Users\jusra\RiderProjects\FlexiApi\Data\obj\Debug\net8.0\refint\Data.dll
 C:\Users\jusra\RiderProjects\FlexiApi\Data\obj\Debug\net8.0\Data.pdb
 C:\Users\jusra\RiderProjects\FlexiApi\Data\obj\Debug\net8.0\Data.genruntimeconfig.cache
 C:\Users\jusra\RiderProjects\FlexiApi\Data\obj\Debug\net8.0\ref\Data.dll
+C:\Users\jusra\RiderProjects\FlexiApi\Data\obj\Debug\net8.0\Data.sourcelink.json

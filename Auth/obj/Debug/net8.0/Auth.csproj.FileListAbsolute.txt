@@ -9,3 +9,5 @@ C:\Users\jusra\RiderProjects\FlexiApi\Auth\obj\Debug\net8.0\Auth.dll
 C:\Users\jusra\RiderProjects\FlexiApi\Auth\obj\Debug\net8.0\refint\Auth.dll
 C:\Users\jusra\RiderProjects\FlexiApi\Auth\obj\Debug\net8.0\Auth.pdb
 C:\Users\jusra\RiderProjects\FlexiApi\Auth\obj\Debug\net8.0\ref\Auth.dll
+C:\Users\jusra\RiderProjects\FlexiApi\Auth\obj\Debug\net8.0\Auth.sourcelink.json
+C:\Users\jusra\RiderProjects\FlexiApi\Auth\obj\Debug\net8.0\Auth.csproj.AssemblyReference.cache

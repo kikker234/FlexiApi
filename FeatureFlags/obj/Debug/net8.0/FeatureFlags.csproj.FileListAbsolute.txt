@@ -13,3 +13,4 @@ C:\Users\jusra\RiderProjects\FlexiApi\FeatureFlags\bin\Debug\net8.0\Data.dll
 C:\Users\jusra\RiderProjects\FlexiApi\FeatureFlags\bin\Debug\net8.0\Data.pdb
 C:\Users\jusra\RiderProjects\FlexiApi\FeatureFlags\obj\Debug\net8.0\FeatureFlags.csproj.AssemblyReference.cache
 C:\Users\jusra\RiderProjects\FlexiApi\FeatureFlags\obj\Debug\net8.0\FeatureFlags.csproj.CopyComplete
+C:\Users\jusra\RiderProjects\FlexiApi\FeatureFlags\obj\Debug\net8.0\FeatureFlags.sourcelink.json
