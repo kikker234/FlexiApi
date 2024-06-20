@@ -11,7 +11,6 @@
           "Auth": "1.0.0",
           "Business": "1.0.0",
           "Data": "1.0.0",
-          "FeatureFlags": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.6",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.6",
           "Microsoft.AspNetCore.OpenApi": "8.0.6",
@@ -1379,15 +1378,6 @@
         "runtime": {
           "Data.dll": {}
         }
-      },
-      "FeatureFlags/1.0.0": {
-        "dependencies": {
-          "Data": "1.0.0",
-          "Microsoft.FeatureManagement.AspNetCore": "3.3.1"
-        },
-        "runtime": {
-          "FeatureFlags.dll": {}
-        }
       }
     }
   },
@@ -2311,11 +2301,6 @@
       "sha512": ""
     },
     "Data/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "FeatureFlags/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

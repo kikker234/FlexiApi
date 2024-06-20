@@ -2409,20 +2409,6 @@
         "runtime": {
           "bin/placeholder/Data.dll": {}
         }
-      },
-      "FeatureFlags/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "Data": "1.0.0",
-          "Microsoft.FeatureManagement.AspNetCore": "3.3.1"
-        },
-        "compile": {
-          "bin/placeholder/FeatureFlags.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/FeatureFlags.dll": {}
-        }
       }
     }
   },
@@ -6202,11 +6188,6 @@
       "type": "project",
       "path": "../Data/Data.csproj",
       "msbuildProject": "../Data/Data.csproj"
-    },
-    "FeatureFlags/1.0.0": {
-      "type": "project",
-      "path": "../FeatureFlags/FeatureFlags.csproj",
-      "msbuildProject": "../FeatureFlags/FeatureFlags.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -6214,7 +6195,6 @@
       "Auth >= 1.0.0",
       "Business >= 1.0.0",
       "Data >= 1.0.0",
-      "FeatureFlags >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.6",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 8.0.6",
       "Microsoft.AspNetCore.OpenApi >= 8.0.6",
@@ -6231,7 +6211,8 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jusra\\.nuget\\packages\\": {}
+    "C:\\Users\\jusra\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
@@ -6242,13 +6223,19 @@
       "packagesPath": "C:\\Users\\jusra\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\FlexiApi\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\jusra\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\jusra\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -6263,9 +6250,6 @@
             },
             "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\Data\\Data.csproj": {
               "projectPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\Data\\Data.csproj"
-            },
-            "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\FeatureFlags\\FeatureFlags.csproj": {
-              "projectPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\FeatureFlags\\FeatureFlags.csproj"
             }
           }
         }
@@ -6356,7 +6340,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   },

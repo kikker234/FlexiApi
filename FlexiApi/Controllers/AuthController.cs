@@ -10,32 +10,40 @@ namespace FlexiApi.Controllers;
 public class AuthController : ControllerBase
 {
     
-    private readonly UserManager<User> _userManager;
+    private readonly IAuthManager _authManager;
     
-    public AuthController(UserManager<User> userManager)
+    public AuthController(IAuthManager authManager)
     {
-        _userManager = userManager;
+        _authManager = authManager;
     }
 
-    [HttpPost]
-    [Route("login")]
+    [HttpGet]
     public IActionResult Login(String email, String password)
     {
-        User? user = _userManager.FindByEmailAsync(email).Result;
+        String? token = _authManager.Login(email, password);
 
-        if (user == null)
-        {
+        if (token == null)
             return BadRequest("Credentials not found");
-        }
 
-        PasswordHasher<User> ph = new PasswordHasher<User>();
+        return Ok(token);
+    }
+    
+    [HttpPost]
+    public IActionResult Register(String email, String password)
+    {
+        if (!_authManager.Register(email, password))
+            return BadRequest("User already exists");
 
-        if (ph.VerifyHashedPassword(user, user.PasswordHash, password) == PasswordVerificationResult.Failed)
-        {
-            return BadRequest("Credentials not found");
-        }
+        return Ok();
+    }
+    
+    [HttpDelete]
+    public IActionResult Disable(String email, String password)
+    {
+        if (!_authManager.DisableAccount(email, password))
+            return BadRequest("User not found");
 
-        return Ok(TokenProvider.GenerateJwtToken(user.Id));
+        return Ok();
     }
     
 }

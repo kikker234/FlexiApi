@@ -7,7 +7,6 @@ using Business.Services;
 using Data;
 using Data.Models;
 using Data.Repositories;
-using FeatureFlags;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -41,12 +40,11 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
     .AddEntityFrameworkStores<FlexiContext>()
     .AddDefaultTokenProviders();
 
+builder.Services.AddScoped<IAuthManager, AuthManager>();
+
 builder.Services.AddScoped<DbContext, FlexiContext>();
 builder.Services.AddScoped<OrganizationServices>();
 builder.Services.AddScoped<OrganizationRepository>();
-
-builder.Services.AddScoped<FeatureFlagRepository>();
-builder.Services.AddScoped<FeatureFlagManager>();
 
 builder.Services.AddScoped<InstanceServices>();
 builder.Services.AddScoped<InstanceRepository>();
@@ -83,20 +81,11 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddControllers(options =>
 {
-    options.Filters.Add<FeatureActionFilter>();
     options.Filters.Add<AuthorizeActionFilter>();
 });
 
 builder.Services.AddSwaggerGen(swagger =>
 {
-    //This is to generate the Default UI of Swagger Documentation
-    swagger.SwaggerDoc("v1", new OpenApiInfo
-    {
-        Version = "v1",
-        Title = "JWT Token Authentication API",
-        Description = ".NET 8 Web API"
-    });
-    // To Enable authorization using Swagger (JWT)
     swagger.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
     {
         Name = "Authorization",

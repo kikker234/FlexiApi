@@ -1,6 +1,5 @@
 ﻿using Business.Services;
 using Data.Models;
-using FeatureFlags;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FlexiApi.Controllers;
@@ -30,7 +29,6 @@ public class OrganizationController : Controller
         return Ok("Organization added successfully");
     }
     
-    [Feature("DeleteOrganization")]
     [HttpDelete]
     public IActionResult DeleteOrganization(int id)
     {

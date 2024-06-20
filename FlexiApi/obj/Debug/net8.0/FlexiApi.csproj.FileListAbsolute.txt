@@ -128,11 +128,9 @@ C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\runtimes\win\lib
 C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\Auth.dll
 C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\Business.dll
 C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\Data.dll
-C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\FeatureFlags.dll
 C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\Auth.pdb
 C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\Business.pdb
 C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\Data.pdb
-C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\FeatureFlags.pdb
 C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\Pomelo.EntityFrameworkCore.MySql.dll
 C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\Azure.Core.dll
 C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\Azure.Data.AppConfiguration.dll
@@ -167,4 +165,4 @@ C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\System.Web.WebPa
 C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\System.Web.WebPages.Razor.dll
 C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\System.Web.WebPages.dll
 C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\Microsoft.Web.Infrastructure.dll
-C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\obj\Debug\net8.0\FlexiApi.csproj.Up2Date
+C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\obj\Debug\net8.0\FlexiApi.csproj.CopyComplete

@@ -8,8 +8,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Busine
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth", "Auth\Auth.csproj", "{D0F3A2EF-1F63-4064-86D2-F794786C21EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureFlags", "FeatureFlags\FeatureFlags.csproj", "{D0171A5D-D62A-4037-9DA2-FBCE87103C94}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,9 +30,5 @@ Global
 		{D0F3A2EF-1F63-4064-86D2-F794786C21EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0F3A2EF-1F63-4064-86D2-F794786C21EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0F3A2EF-1F63-4064-86D2-F794786C21EB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D0171A5D-D62A-4037-9DA2-FBCE87103C94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D0171A5D-D62A-4037-9DA2-FBCE87103C94}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D0171A5D-D62A-4037-9DA2-FBCE87103C94}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D0171A5D-D62A-4037-9DA2-FBCE87103C94}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
