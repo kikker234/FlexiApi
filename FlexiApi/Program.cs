@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.Text;
 using Auth;
+using Auth.Attributes;
 using Business;
 using Business.Services;
 using Data;
@@ -80,7 +81,11 @@ builder.Services.AddAuthentication(options =>
         };
     });
 
-builder.Services.AddControllers(options => { options.Filters.Add<FeatureActionFilter>(); });
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<FeatureActionFilter>();
+    options.Filters.Add<AuthorizeActionFilter>();
+});
 
 builder.Services.AddSwaggerGen(swagger =>
 {

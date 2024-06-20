@@ -25,7 +25,6 @@ C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\obj\Debug\net8.0\staticwebassets\
 C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.FlexiApi.props
 C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\obj\Debug\net8.0\staticwebassets.pack.json
 C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\obj\Debug\net8.0\scopedcss\bundle\FlexiApi.styles.css
-C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\obj\Debug\net8.0\FlexiApi.csproj.CopyComplete
 C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\obj\Debug\net8.0\FlexiApi.dll
 C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\obj\Debug\net8.0\refint\FlexiApi.dll
 C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\obj\Debug\net8.0\FlexiApi.pdb
@@ -161,3 +160,11 @@ C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\Microsoft.Identi
 C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\obj\Debug\net8.0\FlexiApi.sourcelink.json
+C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\System.Web.Mvc.dll
+C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\System.Web.Razor.dll
+C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\System.Web.Helpers.dll
+C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\System.Web.WebPages.Deployment.dll
+C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\System.Web.WebPages.Razor.dll
+C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\System.Web.WebPages.dll
+C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\Microsoft.Web.Infrastructure.dll
+C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\obj\Debug\net8.0\FlexiApi.csproj.Up2Date
