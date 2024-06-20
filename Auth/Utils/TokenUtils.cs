@@ -6,7 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Auth;
 
-public class TokenProvider
+public class TokenUtils
 {
     public static string? SecretKey { get; set; } = null;
     public static string? Issuer { get; set; } = null;

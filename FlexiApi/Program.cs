@@ -56,9 +56,9 @@ string key = builder.Configuration["Jwt:Key"];
 string issuer = builder.Configuration["Jwt:Issuer"];
 string audience = builder.Configuration["Jwt:Audience"];
 
-TokenProvider.SecretKey = key;
-TokenProvider.Issuer = issuer;
-TokenProvider.Audience = audience;
+TokenUtils.SecretKey = key;
+TokenUtils.Issuer = issuer;
+TokenUtils.Audience = audience;
 
 builder.Services.AddAuthentication(options =>
     {

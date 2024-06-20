@@ -10,27 +10,48 @@ public class FlexiContext : IdentityDbContext<User>
     /* API */
     public DbSet<Instance> Instances { get; set; }
     public DbSet<Organization> Organizations { get; set; }
-    
+
     public FlexiContext(DbContextOptions<FlexiContext> options) : base(options)
     {
     }
-    protected FlexiContext() { }
-    
-    protected override void OnModelCreating(ModelBuilder builder)
+
+    protected FlexiContext()
     {
-        base.OnModelCreating(builder);
-        
-        var user = new User { 
-            Id = "02174cf0–9412–4cfe-afbf-59f706d72cf6",
-            Email = "admin@admin.com",
-            EmailConfirmed = true, 
-            UserName = "admin",
-            NormalizedUserName = "ADMIN"
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        Instance instance = new Instance
+        {
+            Id = 1,
+            Name = "Flexi",
+            Description = "Flexi is a flexible and scalable platform for managing your organization's data",
+            Key = Guid.NewGuid().ToString(),
         };
 
-        PasswordHasher<User> ph = new PasswordHasher<User>();
-        user.PasswordHash = ph.HashPassword(user, "password");
+        Organization organization = new Organization
+        {
+            Id = 1,
+            Name = "Flexi",
+            InstanceId = 1,
+        };
 
-        builder.Entity<User>().HasData(user);
+        User user = new User
+        {
+            Id = "1",
+            UserName = "admin",
+            NormalizedUserName = "ADMIN",
+            Email = "admin@admin.com",
+            NormalizedEmail = "ADMIN@ADMIN.COM",
+            OrganizationId = 1,
+        };
+        
+        user.PasswordHash = new PasswordHasher<User>().HashPassword(user, "password");
+
+        modelBuilder.Entity<Instance>().HasData(instance);
+        modelBuilder.Entity<Organization>().HasData(organization);
+        modelBuilder.Entity<User>().HasData(user);
     }
 }

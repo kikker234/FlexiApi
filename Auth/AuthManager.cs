@@ -21,6 +21,8 @@ public class AuthManager : IAuthManager
         };
 
         IdentityResult result = _userManager.CreateAsync(user, password).Result;
+        
+        result.Errors.ToList().ForEach(error => Console.WriteLine(error.Description));
 
         return result.Succeeded;
     }
@@ -30,7 +32,7 @@ public class AuthManager : IAuthManager
         User? user = _userManager.FindByEmailAsync(email).Result;
         if (user == null) return null;
 
-        return TokenProvider.GenerateJwtToken(user.Id);
+        return TokenUtils.GenerateJwtToken(user.Id);
     }
 
     public bool DisableAccount(string email, string password)

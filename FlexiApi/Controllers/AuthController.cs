@@ -32,7 +32,7 @@ public class AuthController : ControllerBase
     public IActionResult Register(String email, String password)
     {
         if (!_authManager.Register(email, password))
-            return BadRequest("User already exists");
+            return BadRequest("Could not create account");
 
         return Ok();
     }
