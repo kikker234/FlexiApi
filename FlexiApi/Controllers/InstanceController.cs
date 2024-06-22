@@ -1,8 +1,6 @@
-﻿using Auth;
+﻿using Auth.Attributes;
 using Business;
-using Business.Services;
 using Data.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FlexiApi.Controllers;
@@ -19,13 +17,11 @@ public class InstanceController : Controller
     }
 
     [HttpPost]
-    [Auth.Authorize]
+    [Authorize]
     public IActionResult CreateInstance([FromBody] Instance instance)
     {
         if (_instanceServices.CreateInstance(instance))
-        {
             return Ok();
-        }
 
         return BadRequest();
     }

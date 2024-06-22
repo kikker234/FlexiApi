@@ -2,6 +2,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Data.Models;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Auth;
@@ -35,5 +36,34 @@ public class TokenUtils
 
         var token = tokenHandler.CreateToken(tokenDescriptor);
         return tokenHandler.WriteToken(token);
+    }
+
+    public static String GetUserIdFromToken(string token)
+    {
+        if(token.StartsWith("Bearer "))
+            token = token.Substring(token.IndexOf("Bearer ") + 7);
+        
+        if (SecretKey == null)
+            throw new Exception("SecretKey must be set in TokenProvider.cs");
+
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var key = Encoding.ASCII.GetBytes(SecretKey);
+
+        var validationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(key),
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidIssuer = Issuer,
+            ValidAudience = Audience,
+            ValidateLifetime = true
+        };
+
+        SecurityToken securityToken;
+        var principal = tokenHandler.ValidateToken(token, validationParameters, out securityToken);
+
+        var userId = principal.FindFirst("user")?.Value;
+        return userId ?? throw new Exception("User not found in token");
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Data.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 
 namespace Auth;
@@ -12,17 +13,21 @@ public class AuthManager : IAuthManager
         _userManager = userManager;
     }
     
-    public bool Register(string email, string password)
+    public bool Register(int organization, string email, string password)
     {
         User user = new User
         {
             Email = email,
-            UserName = email
+            UserName = email,
+            OrganizationId = organization,
         };
 
         IdentityResult result = _userManager.CreateAsync(user, password).Result;
-        
-        result.Errors.ToList().ForEach(error => Console.WriteLine(error.Description));
+
+        if (result.Errors.Any())
+        {
+            throw new Exception(result.Errors.First().Description);
+        }
 
         return result.Succeeded;
     }
@@ -43,14 +48,23 @@ public class AuthManager : IAuthManager
         IdentityResult result = _userManager.SetLockoutEndDateAsync(user, DateTimeOffset.MaxValue).Result;
         return result.Succeeded;
     }
-    
+
+    public User? GetLoggedInUser(HttpContext context)
+    {
+        string? token = context.Request.Headers["Authorization"];
+        if (token == null) return null;
+
+        string userId = TokenUtils.GetUserIdFromToken(token);
+        
+        return _userManager.FindByIdAsync(userId).Result;
+    }
+
     private User? CanLogin(string email, string password)
     {
         User? user = _userManager.FindByEmailAsync(email).Result;
 
-        if (user == null)
-            return null;
-
+        if(user == null) return null;
+        
         PasswordHasher<User> ph = new PasswordHasher<User>();
 
         if (ph.VerifyHashedPassword(user, user.PasswordHash, password) == PasswordVerificationResult.Failed)

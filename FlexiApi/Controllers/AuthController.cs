@@ -1,13 +1,14 @@
 ﻿using Auth;
+using Auth.Attributes;
 using Data.Models;
-using Microsoft.AspNetCore.Identity;
+using FlexiApi.Utils;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FlexiApi.Controllers;
 
 [ApiController]
 [Route("/api/[controller]")]
-public class AuthController : ControllerBase
+public class AuthController : Controller
 {
     
     private readonly IAuthManager _authManager;
@@ -31,10 +32,19 @@ public class AuthController : ControllerBase
     [HttpPost]
     public IActionResult Register(String email, String password)
     {
-        if (!_authManager.Register(email, password))
-            return BadRequest("Could not create account");
-
-        return Ok();
+        try
+        {
+            HttpContext context = HttpContext;
+            User user = _authManager.GetLoggedInUser(context);
+            int organizationId = user.OrganizationId;
+            
+            _authManager.Register(organizationId, email, password);
+            return Ok(ApiResponse<string>.Success("User registered successfully"));
+        }
+        catch (Exception e)
+        {
+            return BadRequest(ApiResponse<String>.Error(e));
+        }
     }
     
     [HttpDelete]

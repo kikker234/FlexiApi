@@ -1,5 +1,7 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
-using System.Text;
+using Data;
+using Data.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using ActionExecutedContext = Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext;
@@ -10,6 +12,15 @@ namespace Auth.Attributes;
 
 public class AuthorizeActionFilter : IActionFilter
 {
+    private readonly FlexiContext _context;
+    private readonly UserManager<User> _userManager;
+    
+    public AuthorizeActionFilter(FlexiContext context, UserManager<User> userManager)
+    {
+        _context = context;
+        _userManager = userManager;
+    }
+    
     public void OnActionExecuting(ActionExecutingContext context)
     {
         var action = context.ActionDescriptor;
@@ -23,7 +34,7 @@ public class AuthorizeActionFilter : IActionFilter
             return;
         }
         
-        string token = context.HttpContext.Request.Headers["Authorization"];
+        string? token = context.HttpContext.Request.Headers["Authorization"];
 
         if (token == null)
         {
@@ -32,12 +43,35 @@ public class AuthorizeActionFilter : IActionFilter
         }
         
         token = token.Replace("Bearer ", "");
-        int? userId = ValidateToken(token);
+        string? userId = ValidateToken(token);
         
-        if (userId != null)
+        if (userId == null)
         {
             context.Result = new UnauthorizedResult();
             return;
+        }
+
+        if (attribute.Instance != null)
+        {
+            User? user = _userManager.FindByIdAsync(userId).Result;
+
+            if (user == null)
+            {
+                context.Result = new UnauthorizedResult();
+                return;
+            }
+            
+            _context.Entry(user)
+                .Reference(u => u.Organization)
+                .Load();
+            _context.Entry(user.Organization)
+                .Reference(o => o.Instance)
+                .Load();
+            
+            if (user.Organization.Instance.Name != attribute.Instance)
+            {
+                context.Result = new UnauthorizedResult();
+            }
         }
     }
 
@@ -45,7 +79,7 @@ public class AuthorizeActionFilter : IActionFilter
     {
     }
     
-    public int? ValidateToken(string token)
+    public string? ValidateToken(string? token)
     {
         if (token == null) 
             return null;
@@ -65,9 +99,8 @@ public class AuthorizeActionFilter : IActionFilter
             }, out SecurityToken validatedToken);
 
             var jwtToken = (JwtSecurityToken)validatedToken;
-            var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
-
-            // return user id from JWT token if validation successful
+            string userId = jwtToken.Claims.First(x => x.Type == "user").Value;
+            
             return userId;
         }
         catch
