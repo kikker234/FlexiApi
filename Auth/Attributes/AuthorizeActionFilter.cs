@@ -73,6 +73,26 @@ public class AuthorizeActionFilter : IActionFilter
                 context.Result = new UnauthorizedResult();
             }
         }
+
+        if (attribute.Roles != null)
+        {
+            User? user = _userManager.FindByIdAsync(userId).Result;
+
+            if (user == null)
+            {
+                context.Result = new UnauthorizedResult();
+                return;
+            }
+            
+            foreach (string role in attribute.Roles)
+            {
+                if (!_userManager.IsInRoleAsync(user, role).Result)
+                {
+                    context.Result = new UnauthorizedResult();
+                    return;
+                }
+            }
+        }
     }
 
     public void OnActionExecuted(ActionExecutedContext filterContext)

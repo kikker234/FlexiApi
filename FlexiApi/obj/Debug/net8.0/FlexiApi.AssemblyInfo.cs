@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FlexiApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c4c8cbcfc29282309238058bfa947fa854a6578c")]
 [assembly: System.Reflection.AssemblyProductAttribute("FlexiApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FlexiApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -12,14 +12,15 @@ public class InstanceServices
         _instanceRepository = instanceRepository;
     }
     
-    public bool CreateInstance(Instance instance)
+    public string CreateInstance(Instance instance)
     {
         instance.Key = GenerateInstanceKey();
         
-        return _instanceRepository.Create(instance);   
+        _instanceRepository.Create(instance);   
+        return Guid.NewGuid().ToString();
     }
 
-    private string GenerateInstanceKey()
+    public string GenerateInstanceKey()
     {
         return Guid.NewGuid().ToString();
     }

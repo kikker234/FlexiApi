@@ -12,6 +12,11 @@ public class ApiResponse<T>
         return new ApiResponse<T>(exception);
     }
     
+    public static ApiResponse<T> Error(string errorMessage)
+    {
+        return new ApiResponse<T>(errorMessage);
+    }
+    
     
     
     public bool IsSuccess { get; set; }
@@ -35,5 +40,11 @@ public class ApiResponse<T>
     {
         IsSuccess = false;
         ErrorMessage = exception.Message;
+    }
+    
+    public ApiResponse(string errorMessage)
+    {
+        IsSuccess = false;
+        ErrorMessage = errorMessage;
     }
 }

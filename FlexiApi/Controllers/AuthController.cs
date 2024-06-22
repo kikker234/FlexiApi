@@ -24,12 +24,13 @@ public class AuthController : Controller
         String? token = _authManager.Login(email, password);
 
         if (token == null)
-            return BadRequest("Credentials not found");
+            return BadRequest(ApiResponse<string>.Error("Invalid credentials"));
 
-        return Ok(token);
+        return Ok(ApiResponse<string>.Success(token));
     }
     
     [HttpPost]
+    [Authorize]
     public IActionResult Register(String email, String password)
     {
         try
@@ -51,9 +52,9 @@ public class AuthController : Controller
     public IActionResult Disable(String email, String password)
     {
         if (!_authManager.DisableAccount(email, password))
-            return BadRequest("User not found");
+            return BadRequest(ApiResponse<string>.Error("Could not disable account"));
 
-        return Ok();
+        return Ok(ApiResponse<string>.Success("Account disabled successfully"));
     }
     
 }
