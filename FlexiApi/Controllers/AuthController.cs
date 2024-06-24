@@ -48,13 +48,4 @@ public class AuthController : Controller
         }
     }
     
-    [HttpDelete]
-    public IActionResult Disable(String email, String password)
-    {
-        if (!_authManager.DisableAccount(email, password))
-            return BadRequest(ApiResponse<string>.Error("Could not disable account"));
-
-        return Ok(ApiResponse<string>.Success("Account disabled successfully"));
-    }
-    
 }
