@@ -9,7 +9,7 @@ namespace FlexiApi.Attributes;
 
 public class ValidationActionFilter : IActionFilter
 {
-    private Dictionary<Type, IFlexiValidator> _validators = new Dictionary<Type, IFlexiValidator>();
+    private Dictionary<Type, IFlexiValidator> _validators = new();
 
     public ValidationActionFilter()
     {
@@ -20,7 +20,10 @@ public class ValidationActionFilter : IActionFilter
         {
             if (typeof(IFlexiValidator).IsAssignableFrom(type) && !type.IsInterface && !type.IsAbstract)
             {
-                IFlexiValidator validator = (IFlexiValidator)Activator.CreateInstance(type);
+                IFlexiValidator? validator = (IFlexiValidator) Activator.CreateInstance(type);
+                
+                if(validator == null) continue;
+                
                 _validators.Add(validator.GetValidatorType(), validator);
             }
         }
@@ -33,16 +36,15 @@ public class ValidationActionFilter : IActionFilter
         foreach (object param in parameters)
         {
             Type paramType = param.GetType();
-            if (!this._validators.ContainsKey(paramType)) continue;
+            if (!_validators.ContainsKey(paramType)) continue;
 
-            IFlexiValidator validator = this._validators[paramType];
-            if (!validator.IsValid(param))
-            {
-                string[] errors = validator.GetErrors();
-                context.Result = new BadRequestObjectResult(errors);
+            IFlexiValidator validator = _validators[paramType];
+            if (validator.IsValid(param)) continue;
 
-                break;
-            }
+            string[]? errors = validator.GetErrors();
+            context.Result = new BadRequestObjectResult(errors);
+
+            break;
         }
     }
 
