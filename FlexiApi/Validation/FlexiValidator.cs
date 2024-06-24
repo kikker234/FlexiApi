@@ -5,23 +5,31 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FlexiApi.Validation;
 
-public abstract class FlexiValidator<out T> : AbstractValidator<T>
+public abstract class FlexiValidator<T> : AbstractValidator<T>, IFlexiValidator
 {
 
-    private T t;
+    private T? _t;
     
     public bool IsValid(T t)
     {
-        if (t == null) this.t = t;
+        this._t = t;
         
         return Validate(t).IsValid;
     }
 
+    bool IFlexiValidator.IsValid(object t)
+    {
+        if (t is T typedObject)
+            return IsValid(typedObject);
+        
+        return false;
+    }
+
     public string[]? GetErrors()
     {
-        if (t == null) return null;
+        if (_t == null) return null;
         
-        ValidationResult result = Validate(t);
+        ValidationResult result = Validate(_t);
         if (result.IsValid) return null;
         
         List<string> errors = new();
@@ -34,4 +42,11 @@ public abstract class FlexiValidator<out T> : AbstractValidator<T>
     }
 
     public abstract Type GetValidatorType();
+}
+
+public interface IFlexiValidator
+{
+    bool IsValid(object t);
+    string[]? GetErrors();
+    Type GetValidatorType();
 }

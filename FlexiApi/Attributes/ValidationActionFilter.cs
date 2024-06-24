@@ -1,67 +1,49 @@
 ﻿using System.Reflection;
 using Data.Models;
 using FlexiApi.Validation;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace FlexiApi.Attributes;
 
 public class ValidationActionFilter : IActionFilter
 {
-    
-    public void OnActionExecuting(ActionExecutingContext context)
+    private Dictionary<Type, IFlexiValidator> _validators = new Dictionary<Type, IFlexiValidator>();
+
+    public ValidationActionFilter()
     {
-        var action = context.ActionDescriptor;
-        var methodInfo = ((Microsoft.AspNetCore.Mvc.Controllers.ControllerActionDescriptor)action).MethodInfo;
-        var attribute = methodInfo.GetCustomAttributes(typeof(ValidationAttribute), false).FirstOrDefault() as ValidationAttribute;
+        Assembly assembly = Assembly.GetExecutingAssembly();
+        Type[] types = assembly.GetTypes();
 
-        if (attribute == null) return;
-        
-        var type = attribute.Type;
-        var validator = GetValidator<object>(type);
-
-        if (validator == null)
+        foreach (Type type in types)
         {
-            // warning in the console
-            System.Console.WriteLine($"Validator for {type.Name} not found");
-            context.Result = new Microsoft.AspNetCore.Mvc.BadRequestObjectResult("Validator not found");
-            return;
-        }
-        
-        var model = context.ActionArguments.Values.FirstOrDefault();
-        
-        if (model == null) return;
-        
-        var result = validator.Validate(model);
-        
-        if (result.IsValid) return;
-        
-        context.Result = new Microsoft.AspNetCore.Mvc.BadRequestObjectResult(result);
-    }
-    
-    private FlexiValidator<Instance>? GetValidator<T>(Type type)
-    {
-        Console.WriteLine(type);
-        
-        Type[] types = Assembly.GetExecutingAssembly().GetTypes()
-            .Where(t => t.IsSubclassOf(typeof(FlexiValidator<Instance>)))
-            .ToArray();
-
-        // log all types
-        foreach (Type t in types)
-        {
-            System.Console.WriteLine(t.Name);
-        }
-        
-        foreach (Type t in types)
-        {
-            if (typeof(FlexiValidator<T>).IsAssignableFrom(t))
+            if (typeof(IFlexiValidator).IsAssignableFrom(type) && !type.IsInterface && !type.IsAbstract)
             {
-                FlexiValidator<Instance>? validator = (FlexiValidator<Instance>) Activator.CreateInstance(t);
-                if (validator != null && validator.GetValidatorType() == type) return validator;
+                IFlexiValidator validator = (IFlexiValidator)Activator.CreateInstance(type);
+                _validators.Add(validator.GetValidatorType(), validator);
             }
         }
+    }
 
-        return null;
+    public void OnActionExecuting(ActionExecutingContext context)
+    {
+        object[] parameters = context.ActionArguments.Values.ToArray();
+
+        foreach (object param in parameters)
+        {
+            Type paramType = param.GetType();
+            if (!this._validators.ContainsKey(paramType)) continue;
+
+            IFlexiValidator validator = this._validators[paramType];
+            if (!validator.IsValid(param))
+            {
+                string[] errors = validator.GetErrors();
+                context.Result = new BadRequestObjectResult(errors);
+
+                break;
+            }
+        }
     }
 
     public void OnActionExecuted(ActionExecutedContext context)
