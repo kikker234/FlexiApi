@@ -20,7 +20,7 @@ public class ValidationActionFilter : IActionFilter
         {
             if (typeof(IFlexiValidator).IsAssignableFrom(type) && !type.IsInterface && !type.IsAbstract)
             {
-                IFlexiValidator? validator = (IFlexiValidator) Activator.CreateInstance(type);
+                IFlexiValidator? validator = (IFlexiValidator?) Activator.CreateInstance(type);
                 
                 if(validator == null) continue;
                 
