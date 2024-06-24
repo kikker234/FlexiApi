@@ -3,7 +3,6 @@ using System.Text;
 using Auth;
 using Auth.Attributes;
 using Business;
-using Business.Services;
 using Data;
 using Data.Models;
 using Data.Repositories;
@@ -44,8 +43,6 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
 builder.Services.AddScoped<IAuthManager, AuthManager>();
 
 builder.Services.AddScoped<DbContext, FlexiContext>();
-builder.Services.AddScoped<OrganizationServices>();
-builder.Services.AddScoped<OrganizationRepository>();
 
 builder.Services.AddScoped<InstanceServices>();
 builder.Services.AddScoped<InstanceRepository>();

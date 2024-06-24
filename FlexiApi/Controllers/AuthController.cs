@@ -37,9 +37,8 @@ public class AuthController : Controller
         {
             HttpContext context = HttpContext;
             User user = _authManager.GetLoggedInUser(context);
-            int organizationId = user.OrganizationId;
             
-            _authManager.Register(organizationId, email, password);
+            _authManager.Register(email, password);
             return Ok(ApiResponse<string>.Success("User registered successfully"));
         }
         catch (Exception e)

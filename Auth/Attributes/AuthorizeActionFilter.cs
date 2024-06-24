@@ -51,29 +51,6 @@ public class AuthorizeActionFilter : IActionFilter
             return;
         }
 
-        if (attribute.Instance != null)
-        {
-            User? user = _userManager.FindByIdAsync(userId).Result;
-
-            if (user == null)
-            {
-                context.Result = new UnauthorizedResult();
-                return;
-            }
-            
-            _context.Entry(user)
-                .Reference(u => u.Organization)
-                .Load();
-            _context.Entry(user.Organization)
-                .Reference(o => o.Instance)
-                .Load();
-            
-            if (user.Organization.Instance.Name != attribute.Instance)
-            {
-                context.Result = new UnauthorizedResult();
-            }
-        }
-
         if (attribute.Roles != null)
         {
             User? user = _userManager.FindByIdAsync(userId).Result;

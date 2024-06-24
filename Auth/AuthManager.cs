@@ -13,13 +13,12 @@ public class AuthManager : IAuthManager
         _userManager = userManager;
     }
     
-    public bool Register(int organization, string email, string password)
+    public bool Register(string email, string password)
     {
         User user = new User
         {
             Email = email,
             UserName = email,
-            OrganizationId = organization,
         };
 
         IdentityResult result = _userManager.CreateAsync(user, password).Result;
