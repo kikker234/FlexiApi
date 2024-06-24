@@ -1,6 +1,7 @@
 ﻿using Auth.Attributes;
 using Business;
 using Data.Models;
+using FlexiApi.Attributes;
 using FlexiApi.Utils;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,16 +18,18 @@ public class InstanceController : Controller
     }
 
     [HttpPost]
+    // [Authorize]
+    [Validation(typeof(Instance))]
     public IActionResult CreateInstance([FromBody] Instance instance)
     {
         try
         {
-            string jwt = _instanceServices.CreateInstance(instance);
-            return Ok(ApiResponse<String>.Success(jwt));
+            string instanceKey = _instanceServices.CreateInstance(instance);
+            return Ok(ApiResponse<string>.Success(instanceKey));
         }
         catch (Exception e)
         {
-            return BadRequest(ApiResponse<String>.Error(e));
+            return BadRequest(ApiResponse<string>.Error(e));
         }
     }
 }

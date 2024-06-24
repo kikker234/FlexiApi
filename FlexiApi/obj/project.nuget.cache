@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "0YpkIvXv4T5pRpolQ41BOZTesLtODYluyh3Vd/VLXu5PToY7N1Coj4MzCzid89cXztgp4T0ZpBEXLGxiDA3HLA==",
+  "dgSpecHash": "MZme3Lxmha6Qc5PV6PygAu3zLyUy8eQkDP/ePLvjrBWDgFr0+o+DvAthfT6f5Ow5xtpHSzX8lXconvPU+Csoqw==",
   "success": true,
   "projectFilePath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\FlexiApi\\FlexiApi.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "C:\\Users\\jusra\\.nuget\\packages\\azure.security.keyvault.secrets\\4.3.0\\azure.security.keyvault.secrets.4.3.0.nupkg.sha512",
     "C:\\Users\\jusra\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "C:\\Users\\jusra\\.nuget\\packages\\dnsclient\\1.7.0\\dnsclient.1.7.0.nupkg.sha512",
+    "C:\\Users\\jusra\\.nuget\\packages\\fluentvalidation\\11.9.2\\fluentvalidation.11.9.2.nupkg.sha512",
     "C:\\Users\\jusra\\.nuget\\packages\\google.protobuf\\3.25.1\\google.protobuf.3.25.1.nupkg.sha512",
     "C:\\Users\\jusra\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\jusra\\.nuget\\packages\\k4os.compression.lz4\\1.3.5\\k4os.compression.lz4.1.3.5.nupkg.sha512",

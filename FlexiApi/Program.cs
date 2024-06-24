@@ -7,6 +7,7 @@ using Business.Services;
 using Data;
 using Data.Models;
 using Data.Repositories;
+using FlexiApi.Attributes;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -82,6 +83,7 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddControllers(options =>
 {
     options.Filters.Add<AuthorizeActionFilter>();
+    options.Filters.Add<ValidationActionFilter>();
 });
 
 builder.Services.AddSwaggerGen(swagger =>
