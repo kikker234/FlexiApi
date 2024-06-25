@@ -24,4 +24,41 @@ public class InstanceServices
     {
         return Guid.NewGuid().ToString();
     }
+
+    public Instance GetInstance(string instanceKey)
+    {
+        Instance instance = _instanceRepository.Get(instanceKey);
+        
+        if(instance == null) throw new Exception("Instance not found");
+        
+        return instance;
+    }
+    
+    public Instance GetInstance(string instanceKey, string email)
+    {
+        Instance instance = _instanceRepository.Get(instanceKey);
+        
+        if(instance == null) throw new Exception("Instance not found");
+        if(instance.OwnerEmail != email) throw new Exception("Instance not found");
+        
+        return instance;
+    }
+
+
+    public void UpdateInstance(Instance instance)
+    {
+        _instanceRepository.Update(instance);
+    }
+
+    public string RegenerateInstanceKey(string instanceKey)
+    {
+        Instance instance = _instanceRepository.Get(instanceKey);
+        
+        if(instance == null) throw new Exception("Instance not found");
+        
+        instance.Key = GenerateInstanceKey();
+        _instanceRepository.Update(instance);
+        
+        return instance.Key;
+    }
 }

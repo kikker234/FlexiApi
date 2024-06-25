@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "MZme3Lxmha6Qc5PV6PygAu3zLyUy8eQkDP/ePLvjrBWDgFr0+o+DvAthfT6f5Ow5xtpHSzX8lXconvPU+Csoqw==",
+  "dgSpecHash": "W3lUWl5xdDjiohTFoLTpQYxHzzFsPm1WniZzmi2ZsSRGf5JZHQZNhOKX31leHt0YF+L2pu2B4U3Bj0p15sKeLg==",
   "success": true,
   "projectFilePath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\FlexiApi\\FlexiApi.csproj",
   "expectedPackageFiles": [
@@ -24,6 +24,7 @@
     "C:\\Users\\jusra\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.6\\microsoft.aspnetcore.authentication.jwtbearer.8.0.6.nupkg.sha512",
     "C:\\Users\\jusra\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.2.0\\microsoft.aspnetcore.authorization.2.2.0.nupkg.sha512",
     "C:\\Users\\jusra\\.nuget\\packages\\microsoft.aspnetcore.authorization.policy\\2.2.0\\microsoft.aspnetcore.authorization.policy.2.2.0.nupkg.sha512",
+    "C:\\Users\\jusra\\.nuget\\packages\\microsoft.aspnetcore.cors\\2.2.0\\microsoft.aspnetcore.cors.2.2.0.nupkg.sha512",
     "C:\\Users\\jusra\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\8.0.6\\microsoft.aspnetcore.cryptography.internal.8.0.6.nupkg.sha512",
     "C:\\Users\\jusra\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\8.0.6\\microsoft.aspnetcore.cryptography.keyderivation.8.0.6.nupkg.sha512",
     "C:\\Users\\jusra\\.nuget\\packages\\microsoft.aspnetcore.hosting.abstractions\\2.2.0\\microsoft.aspnetcore.hosting.abstractions.2.2.0.nupkg.sha512",

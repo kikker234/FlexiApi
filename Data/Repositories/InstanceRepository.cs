@@ -86,4 +86,9 @@ public class InstanceRepository : ICrudRepository<Instance>
             return false;
         }
     }
+
+    public Instance Get(string instanceKey)
+    {
+        return _context.Instances.FirstOrDefault(i => i.Key == instanceKey);
+    }
 }

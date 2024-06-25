@@ -27,6 +27,17 @@ builder.Services.AddDbContext<FlexiContext>(options =>
     options.UseMySql(connectionString, serverVersion);
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
+});
+
 builder.Services.AddIdentity<User, IdentityRole>(options => 
     {
         // Configure Identity options here
@@ -121,7 +132,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseCors("AllowAllOrigins");
 app.UseHttpsRedirection();
 app.MapControllers();
 app.Run();
