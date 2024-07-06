@@ -3,6 +3,7 @@ using System.Text;
 using Auth;
 using Auth.Attributes;
 using Business;
+using Business.Services;
 using Data;
 using Data.Models;
 using Data.Repositories;
@@ -57,6 +58,11 @@ builder.Services.AddScoped<DbContext, FlexiContext>();
 
 builder.Services.AddScoped<InstanceServices>();
 builder.Services.AddScoped<InstanceRepository>();
+
+builder.Services.AddScoped<CustomerServices>();
+
+builder.Services.AddScoped<OrganizationServices>();
+builder.Services.AddScoped<OrganizationRepository>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

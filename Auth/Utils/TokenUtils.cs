@@ -3,6 +3,8 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Data.Models;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Auth;
@@ -37,33 +39,73 @@ public class TokenUtils
         var token = tokenHandler.CreateToken(tokenDescriptor);
         return tokenHandler.WriteToken(token);
     }
-
-    public static String GetUserIdFromToken(string token)
+    
+    public static String? GetUserIdFromToken(string? token)
     {
-        if(token.StartsWith("Bearer "))
-            token = token.Substring(token.IndexOf("Bearer ") + 7);
-        
-        if (SecretKey == null)
-            throw new Exception("SecretKey must be set in TokenProvider.cs");
+        if (token == null)
+        {
+            return null;
+        }
 
         var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes(SecretKey);
-
-        var validationParameters = new TokenValidationParameters
+        var key = "7b5c2a8dbf9c-4a049ec8f8611a9d49097b5c2a8dbf9c4a049ec8f8611a9d4909"u8.ToArray();
+        try
         {
-            ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(key),
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidIssuer = Issuer,
-            ValidAudience = Audience,
-            ValidateLifetime = true
-        };
+            tokenHandler.ValidateToken(token, new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                // set clockskew to zero so tokens expire exactly at token expiration time (instead of 5 minutes later)
+                ClockSkew = TimeSpan.Zero
+            }, out SecurityToken validatedToken);
 
-        SecurityToken securityToken;
-        var principal = tokenHandler.ValidateToken(token, validationParameters, out securityToken);
+            var jwtToken = (JwtSecurityToken)validatedToken;
 
-        var userId = principal.FindFirst("user")?.Value;
-        return userId ?? throw new Exception("User not found in token");
+            string userId = jwtToken.Claims.First(x => x.Type == "user").Value;
+
+            return userId;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("An error occurred while validating token: " + e.Message);
+            return null;
+        }
+    }
+    
+    public static JwtSecurityToken? GetJwtToken(string token)
+    {
+        JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
+
+        try
+        {
+            tokenHandler.ValidateToken(token, new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(SecretKey)),
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidIssuer = Issuer,
+                ValidAudience = Audience,
+                ClockSkew = TimeSpan.Zero
+            }, out SecurityToken validatedToken);
+        
+            return (JwtSecurityToken)validatedToken;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("An error occurred while validating token: " + e.Message);
+            return null;
+        }
+    }
+
+    public static bool IsValidToken(string? token)
+    {
+        if (token == null) return false;
+        
+        JwtSecurityToken? jwtToken = GetJwtToken(token);
+        
+        return jwtToken != null;
     }
 }

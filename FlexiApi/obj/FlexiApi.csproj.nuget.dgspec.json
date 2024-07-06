@@ -109,6 +109,9 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\Auth\\Auth.csproj": {
+                "projectPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\Auth\\Auth.csproj"
+              },
               "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\Data\\Data.csproj": {
                 "projectPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\Data\\Data.csproj"
               }
@@ -336,6 +339,10 @@
             "MySqlConnector": {
               "target": "Package",
               "version": "[2.3.7, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
             },
             "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",

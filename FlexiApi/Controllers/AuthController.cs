@@ -19,9 +19,9 @@ public class AuthController : Controller
     }
 
     [HttpGet]
-    public IActionResult Login(String email, String password)
+    public async Task<IActionResult> Login(String email, String password)
     {
-        String? token = _authManager.Login(email, password);
+        String? token = await _authManager.Login(email, password);
 
         if (token == null)
             return BadRequest(ApiResponse<string>.Error("Invalid credentials"));
@@ -45,6 +45,15 @@ public class AuthController : Controller
         {
             return BadRequest(ApiResponse<String>.Error(e));
         }
+    }
+    
+    [HttpGet]
+    [Route("valid")]
+    public IActionResult ValidateToken(String token)
+    {
+        bool isValid = _authManager.IsValidToken(token);
+        
+        return Ok(ApiResponse<bool>.Success(isValid));
     }
     
 }

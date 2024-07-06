@@ -31,13 +31,14 @@ public class AuthManager : IAuthManager
         return result.Succeeded;
     }
 
-    public string? Login(string email, string password)
+    public async Task<string?> Login(string email, string password)
     {
-        User? user = _userManager.FindByEmailAsync(email).Result;
+        User? user = await _userManager.FindByEmailAsync(email);
         if (user == null) return null;
 
         return TokenUtils.GenerateJwtToken(user.Id);
     }
+
 
     public bool DisableAccount(string email, string password)
     {
@@ -53,9 +54,19 @@ public class AuthManager : IAuthManager
         string? token = context.Request.Headers["Authorization"];
         if (token == null) return null;
 
-        string userId = TokenUtils.GetUserIdFromToken(token);
+        string? userId = TokenUtils.GetUserIdFromToken(token);
         
-        return _userManager.FindByIdAsync(userId).Result;
+        return userId == null ? null : _userManager.FindByIdAsync(userId).Result;
+    }
+
+    public User? GetLoggedInUser(string email, string password)
+    {
+        return _userManager.FindByEmailAsync(email).Result;
+    }
+
+    public bool IsValidToken(string token)
+    {
+        return TokenUtils.IsValidToken(token);
     }
 
     private User? CanLogin(string email, string password)

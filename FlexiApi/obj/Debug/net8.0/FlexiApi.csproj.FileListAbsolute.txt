@@ -167,3 +167,4 @@ C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\System.Web.WebPa
 C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\Microsoft.Web.Infrastructure.dll
 C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\obj\Debug\net8.0\FlexiApi.csproj.CopyComplete
 C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\FluentValidation.dll
+C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\Newtonsoft.Json.dll
