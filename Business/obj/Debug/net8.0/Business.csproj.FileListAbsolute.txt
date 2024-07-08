@@ -13,6 +13,6 @@ C:\Users\jusra\RiderProjects\FlexiApi\Business\bin\Debug\net8.0\Data.dll
 C:\Users\jusra\RiderProjects\FlexiApi\Business\bin\Debug\net8.0\Data.pdb
 C:\Users\jusra\RiderProjects\FlexiApi\Business\obj\Debug\net8.0\Business.csproj.AssemblyReference.cache
 C:\Users\jusra\RiderProjects\FlexiApi\Business\obj\Debug\net8.0\Business.sourcelink.json
-C:\Users\jusra\RiderProjects\FlexiApi\Business\obj\Debug\net8.0\Business.csproj.CopyComplete
 C:\Users\jusra\RiderProjects\FlexiApi\Business\bin\Debug\net8.0\Auth.dll
 C:\Users\jusra\RiderProjects\FlexiApi\Business\bin\Debug\net8.0\Auth.pdb
+C:\Users\jusra\RiderProjects\FlexiApi\Business\obj\Debug\net8.0\Business.csproj.Up2Date

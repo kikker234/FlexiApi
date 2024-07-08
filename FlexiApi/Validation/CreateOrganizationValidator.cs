@@ -1,4 +1,5 @@
 ﻿using FlexiApi.InputModels;
+using FlexiApi.Resources;
 using FluentValidation;
 using Microsoft.Extensions.Localization;
 
@@ -19,14 +20,15 @@ public class CreateOrganizationValidator : FlexiValidator<CreateOrganization>
             .WithMessage(localizer["PasswordRequired"]);
         
         Console.WriteLine(localizer["EmailRequired"].Value);
+        Console.WriteLine(localizer["EmailRequired"].ResourceNotFound);
+        Console.WriteLine(localizer["EmailRequired"].Name);
+        Console.WriteLine(localizer["EmailRequired"].SearchedLocation);
+        
+        Console.WriteLine(localizer.GetAllStrings().Count());
     }
     
     public override Type GetValidatorType()
     {
         return typeof(CreateOrganization);
-    }
-    
-    public class ValidationMessages
-    {
     }
 }

@@ -33,9 +33,6 @@
           "FlexiApi.dll": {}
         },
         "resources": {
-          "en/FlexiApi.resources.dll": {
-            "locale": "en"
-          },
           "nl/FlexiApi.resources.dll": {
             "locale": "nl"
           }
