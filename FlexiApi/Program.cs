@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Globalization;
 using System.Text;
 using Auth;
 using Auth.Attributes;
@@ -8,6 +9,7 @@ using Data;
 using Data.Models;
 using Data.Repositories;
 using FlexiApi.Attributes;
+using FlexiApi.InputModels;
 using FlexiApi.Validation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -68,12 +70,9 @@ builder.Services.AddScoped<OrganizationServices>();
 builder.Services.AddScoped<OrganizationRepository>();
 
 builder.Services.AddScoped<CreateOrganizationValidator>();
-builder.Services.AddScoped<CreateOrganizationValidator>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 
 string key = builder.Configuration["Jwt:Key"];
 string issuer = builder.Configuration["Jwt:Issuer"];
@@ -102,12 +101,18 @@ builder.Services.AddAuthentication(options =>
         };
     });
 
-var supportedCultures = new[] { "en", "nl" };
+builder.Services.AddLocalization();
 builder.Services.Configure<RequestLocalizationOptions>(options =>
 {
-    options.SetDefaultCulture(supportedCultures[0])
-        .AddSupportedCultures(supportedCultures)
-        .AddSupportedUICultures(supportedCultures);
+    var supportedCultures = new List<CultureInfo>
+    {
+        new CultureInfo("en-GB"),
+        new CultureInfo("nl"),
+    };
+
+    options.DefaultRequestCulture = new RequestCulture(culture: "en-GB", uiCulture: "en-GB");
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
 });
 
 builder.Services.AddControllers(options =>
@@ -146,12 +151,8 @@ builder.Services.AddSwaggerGen(swagger =>
 
 var app = builder.Build();
 
-var localizationOptions = new RequestLocalizationOptions()
-    .SetDefaultCulture(supportedCultures[0])
-    .AddSupportedCultures(supportedCultures)
-    .AddSupportedUICultures(supportedCultures);
-
-app.UseRequestLocalization(localizationOptions);
+var localizeOptions = app.Services.GetService<IOptions<RequestLocalizationOptions>>();
+app.UseRequestLocalization(localizeOptions.Value);
 
 if (app.Environment.IsDevelopment())
 {

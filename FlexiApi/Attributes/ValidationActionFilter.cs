@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Text.RegularExpressions;
 using Data.Models;
 using FlexiApi.Validation;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +14,6 @@ public class ValidationActionFilter : IActionFilter
 
     public ValidationActionFilter(IServiceProvider serviceProvider)
     {
-        
         Assembly assembly = Assembly.GetExecutingAssembly();
         Type[] types = assembly.GetTypes();
 
@@ -23,9 +23,9 @@ public class ValidationActionFilter : IActionFilter
             {
                 // get validator from DI
                 IFlexiValidator? validator = (IFlexiValidator?)serviceProvider.GetService(type);
-                
-                if(validator == null) continue;
-                
+
+                if (validator == null) continue;
+
                 _validators.Add(validator.GetValidatorType(), validator);
             }
         }
@@ -41,19 +41,25 @@ public class ValidationActionFilter : IActionFilter
             if (!_validators.ContainsKey(paramType)) continue;
 
             IFlexiValidator validator = _validators[paramType];
-            if (validator.IsValid(param))
-            {
-                continue;
-            }
+            if (validator.IsValid(param)) continue;
             
-
             string[]? errors = validator.GetErrors();
-
-            Dictionary<string, string> errorDictionary = new();
+            if(errors == null) continue;
             
+            Dictionary<string, string> errorDictionary = new();
             foreach (string error in errors)
             {
-                // string[] errorSplit = error.Split(": ");
+                string[] errorParts = error.Split(":");
+                
+                if (errorParts.Length == 2)
+                {
+                    if(errorDictionary.ContainsKey(errorParts[0]))
+                        errorDictionary[errorParts[0]] += $", {errorParts[1]}";
+                    else
+                        errorDictionary.Add(errorParts[0], errorParts[1]);
+                    
+                    Console.WriteLine("Added error for: " + errorParts[0]);
+                }
             }
             
             context.Result = new BadRequestObjectResult(errorDictionary);

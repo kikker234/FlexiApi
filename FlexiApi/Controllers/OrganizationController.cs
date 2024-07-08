@@ -2,8 +2,10 @@
 using Data.Models;
 using FlexiApi.Attributes;
 using FlexiApi.InputModels;
+using FlexiApi.Resources;
 using FlexiApi.Utils;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 
 namespace FlexiApi.Controllers;
 
@@ -12,16 +14,23 @@ public class OrganizationController : Controller
 {
     
     private OrganizationServices _organizationServices;
+    private IStringLocalizer<ValidationMessages> _localizer;
     
-    public OrganizationController(OrganizationServices organizationServices)
+    public OrganizationController(OrganizationServices organizationServices, IStringLocalizer<ValidationMessages> localizer)
     {
         _organizationServices = organizationServices;
+        _localizer = localizer;
     }
     
     [HttpPost]
     [Validation(typeof(CreateOrganization))]
     public IActionResult CreateOrganization([FromBody] CreateOrganization data)
     {
+        foreach (var localizedString in _localizer.GetAllStrings())
+        {
+            Console.WriteLine(localizedString);
+        }
+        
         if (!ModelState.IsValid)
         {
             Console.WriteLine(data);
