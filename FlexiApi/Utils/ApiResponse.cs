@@ -12,9 +12,9 @@ public class ApiResponse<T>
         return new ApiResponse<T>(exception);
     }
     
-    public static ApiResponse<T> Error(string errorMessage)
+    public static ApiResponse<string> Error(string errorMessage)
     {
-        return new ApiResponse<T>(errorMessage);
+        return new ApiResponse<string>(errorMessage);
     }
     
     

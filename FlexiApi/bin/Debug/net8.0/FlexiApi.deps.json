@@ -12,6 +12,7 @@
           "Business": "1.0.0",
           "Data": "1.0.0",
           "FluentValidation": "11.9.2",
+          "i18n": "2.1.17",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.6",
           "Microsoft.AspNetCore.Cors": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.6",
@@ -30,6 +31,14 @@
         },
         "runtime": {
           "FlexiApi.dll": {}
+        },
+        "resources": {
+          "en/FlexiApi.resources.dll": {
+            "locale": "en"
+          },
+          "nl/FlexiApi.resources.dll": {
+            "locale": "nl"
+          }
         }
       },
       "Azure.Core/1.38.0": {
@@ -130,6 +139,18 @@
           "lib/net6.0/Humanizer.dll": {
             "assemblyVersion": "2.14.0.0",
             "fileVersion": "2.14.1.48190"
+          }
+        }
+      },
+      "i18n/2.1.17": {
+        "runtime": {
+          "lib/net40/i18n.Domain.dll": {
+            "assemblyVersion": "2.1.17.0",
+            "fileVersion": "2.1.17.0"
+          },
+          "lib/net40/i18n.dll": {
+            "assemblyVersion": "2.1.17.0",
+            "fileVersion": "2.1.17.0"
           }
         }
       },
@@ -1478,6 +1499,13 @@
       "sha512": "sha512-lQKvtaTDOXnoVJ20ibTuSIOf2i0uO0MPbDhd1jm238I+U/2ZnRENj0cktKZhtchBMtCUSRQ5v4xBCUbKNmyVMw==",
       "path": "humanizer.core/2.14.1",
       "hashPath": "humanizer.core.2.14.1.nupkg.sha512"
+    },
+    "i18n/2.1.17": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-X1bRRLAAO7OpZfZnYtAFHet0/6VbhJ8Qo6gT/Sp0yzb1Mg9+38riiLuBtfZfm984ZqCWYqJ+A51VFasdOg3bTQ==",
+      "path": "i18n/2.1.17",
+      "hashPath": "i18n.2.1.17.nupkg.sha512"
     },
     "K4os.Compression.LZ4/1.3.5": {
       "type": "package",

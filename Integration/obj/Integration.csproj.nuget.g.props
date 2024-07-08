@@ -23,5 +23,6 @@
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <PkgMicrosoft_Extensions_ApiDescription_Server Condition=" '$(PkgMicrosoft_Extensions_ApiDescription_Server)' == '' ">C:\Users\jusra\.nuget\packages\microsoft.extensions.apidescription.server\6.0.5</PkgMicrosoft_Extensions_ApiDescription_Server>
+    <Pkgi18n Condition=" '$(Pkgi18n)' == '' ">C:\Users\jusra\.nuget\packages\i18n\2.1.17</Pkgi18n>
   </PropertyGroup>
 </Project>

@@ -11,8 +11,9 @@ public class ValidationActionFilter : IActionFilter
 {
     private Dictionary<Type, IFlexiValidator> _validators = new();
 
-    public ValidationActionFilter()
+    public ValidationActionFilter(IServiceProvider serviceProvider)
     {
+        
         Assembly assembly = Assembly.GetExecutingAssembly();
         Type[] types = assembly.GetTypes();
 
@@ -20,7 +21,8 @@ public class ValidationActionFilter : IActionFilter
         {
             if (typeof(IFlexiValidator).IsAssignableFrom(type) && !type.IsInterface && !type.IsAbstract)
             {
-                IFlexiValidator? validator = (IFlexiValidator?) Activator.CreateInstance(type);
+                // get validator from DI
+                IFlexiValidator? validator = (IFlexiValidator?)serviceProvider.GetService(type);
                 
                 if(validator == null) continue;
                 
@@ -39,11 +41,22 @@ public class ValidationActionFilter : IActionFilter
             if (!_validators.ContainsKey(paramType)) continue;
 
             IFlexiValidator validator = _validators[paramType];
-            if (validator.IsValid(param)) continue;
+            if (validator.IsValid(param))
+            {
+                continue;
+            }
+            
 
             string[]? errors = validator.GetErrors();
-            context.Result = new BadRequestObjectResult(errors);
 
+            Dictionary<string, string> errorDictionary = new();
+            
+            foreach (string error in errors)
+            {
+                // string[] errorSplit = error.Split(": ");
+            }
+            
+            context.Result = new BadRequestObjectResult(errorDictionary);
             break;
         }
     }

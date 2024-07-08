@@ -157,6 +157,25 @@
           }
         }
       },
+      "i18n/2.1.17": {
+        "type": "package",
+        "compile": {
+          "lib/net40/i18n.Domain.dll": {
+            "related": ".xml"
+          },
+          "lib/net40/i18n.dll": {
+            "related": ".Domain.xml;.XML"
+          }
+        },
+        "runtime": {
+          "lib/net40/i18n.Domain.dll": {
+            "related": ".xml"
+          },
+          "lib/net40/i18n.dll": {
+            "related": ".Domain.xml;.XML"
+          }
+        }
+      },
       "K4os.Compression.LZ4/1.3.5": {
         "type": "package",
         "compile": {
@@ -2839,6 +2858,7 @@
           "Business": "1.0.0",
           "Data": "1.0.0",
           "FluentValidation": "11.9.2",
+          "I18N": "2.1.17",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.6",
           "Microsoft.AspNetCore.Cors": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.6",
@@ -3106,6 +3126,44 @@
         "lib/netstandard2.0/Google.Protobuf.dll",
         "lib/netstandard2.0/Google.Protobuf.pdb",
         "lib/netstandard2.0/Google.Protobuf.xml"
+      ]
+    },
+    "i18n/2.1.17": {
+      "sha512": "X1bRRLAAO7OpZfZnYtAFHet0/6VbhJ8Qo6gT/Sp0yzb1Mg9+38riiLuBtfZfm984ZqCWYqJ+A51VFasdOg3bTQ==",
+      "type": "package",
+      "path": "i18n/2.1.17",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "content/readme.txt",
+        "i18n.2.1.17.nupkg.sha512",
+        "i18n.nuspec",
+        "lib/net40/i18n.Domain.dll",
+        "lib/net40/i18n.Domain.xml",
+        "lib/net40/i18n.XML",
+        "lib/net40/i18n.dll",
+        "readme.txt",
+        "tools/i18n.POTGenerator/envdte.dll",
+        "tools/i18n.POTGenerator/extension.vsixmanifest",
+        "tools/i18n.POTGenerator/i18n.Domain.dll",
+        "tools/i18n.POTGenerator/i18n.Domain.pdb",
+        "tools/i18n.POTGenerator/i18n.Domain.xml",
+        "tools/i18n.POTGenerator/i18n.POTGenerator.dll",
+        "tools/i18n.POTGenerator/i18n.POTGenerator.pdb",
+        "tools/i18n.POTGenerator/i18n.POTGenerator.pkgdef",
+        "tools/i18n.POTGenerator/i18n.POTGenerator.vsix",
+        "tools/i18n.PostBuild/i18n.Domain.dll",
+        "tools/i18n.PostBuild/i18n.Domain.pdb",
+        "tools/i18n.PostBuild/i18n.Domain.xml",
+        "tools/i18n.PostBuild/i18n.PostBuild.exe",
+        "tools/i18n.PostBuild/i18n.PostBuild.exe.config",
+        "tools/i18n.PostBuild/i18n.PostBuild.pdb",
+        "tools/i18n.PostBuild/i18n.PostBuild.vshost.exe",
+        "tools/i18n.PostBuild/i18n.PostBuild.vshost.exe.config",
+        "tools/i18n.PostBuild/i18n.dll",
+        "tools/i18n.PostBuild/i18n.pdb",
+        "tools/i18n.PostBuild/i18n.xml"
       ]
     },
     "K4os.Compression.LZ4/1.3.5": {
@@ -7349,6 +7407,16 @@
     }
   },
   "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'i18n 2.1.17' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "libraryId": "i18n",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
     {
       "code": "NU1701",
       "level": "Warning",

@@ -8,9 +8,11 @@ using Data;
 using Data.Models;
 using Data.Repositories;
 using FlexiApi.Attributes;
+using FlexiApi.Validation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
@@ -64,8 +66,13 @@ builder.Services.AddScoped<CustomerServices>();
 builder.Services.AddScoped<OrganizationServices>();
 builder.Services.AddScoped<OrganizationRepository>();
 
+builder.Services.AddScoped<CreateOrganizationValidator>();
+builder.Services.AddScoped<CreateOrganizationValidator>();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 
 string key = builder.Configuration["Jwt:Key"];
 string issuer = builder.Configuration["Jwt:Issuer"];
@@ -93,6 +100,14 @@ builder.Services.AddAuthentication(options =>
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
         };
     });
+
+var supportedCultures = new[] { "en", "nl" };
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    options.SetDefaultCulture(supportedCultures[0])
+        .AddSupportedCultures(supportedCultures)
+        .AddSupportedUICultures(supportedCultures);
+});
 
 builder.Services.AddControllers(options =>
 {
@@ -129,6 +144,13 @@ builder.Services.AddSwaggerGen(swagger =>
 });
 
 var app = builder.Build();
+
+var localizationOptions = new RequestLocalizationOptions()
+    .SetDefaultCulture(supportedCultures[0])
+    .AddSupportedCultures(supportedCultures)
+    .AddSupportedUICultures(supportedCultures);
+
+app.UseRequestLocalization(localizationOptions);
 
 if (app.Environment.IsDevelopment())
 {

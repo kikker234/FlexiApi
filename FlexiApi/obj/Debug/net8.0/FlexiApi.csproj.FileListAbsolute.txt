@@ -168,3 +168,14 @@ C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\Microsoft.Web.In
 C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\obj\Debug\net8.0\FlexiApi.csproj.CopyComplete
 C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\FluentValidation.dll
 C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\en\FlexiApi.resources.dll
+C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\nl\FlexiApi.resources.dll
+C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\i18n.Domain.dll
+C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\i18n.dll
+C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\obj\Debug\net8.0\FlexiApi.resources.ValidationMessages.en.resources
+C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\obj\Debug\net8.0\FlexiApi.resources.ValidationMessages.nl.resources
+C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\obj\Debug\net8.0\FlexiApi.csproj.GenerateResource.cache
+C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\obj\Debug\net8.0\en\FlexiApi.resources.cs
+C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\obj\Debug\net8.0\en\FlexiApi.resources.dll
+C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\obj\Debug\net8.0\nl\FlexiApi.resources.cs
+C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\obj\Debug\net8.0\nl\FlexiApi.resources.dll

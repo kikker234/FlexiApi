@@ -59,6 +59,9 @@ namespace Data.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("InstanceId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -67,11 +70,50 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(255)");
 
+                    b.Property<int?>("PlanId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Size")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("InstanceId");
 
                     b.HasIndex("OwnerId");
 
+                    b.HasIndex("PlanId");
+
                     b.ToTable("Organisations");
+                });
+
+            modelBuilder.Entity("Data.Models.Plan", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("InstanceId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InstanceId");
+
+                    b.ToTable("Plans");
                 });
 
             modelBuilder.Entity("Data.Models.User", b =>
@@ -272,13 +314,38 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Models.Organization", b =>
                 {
+                    b.HasOne("Data.Models.Instance", "Instance")
+                        .WithMany()
+                        .HasForeignKey("InstanceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Data.Models.User", "Owner")
                         .WithMany()
                         .HasForeignKey("OwnerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Data.Models.Plan", "Plan")
+                        .WithMany()
+                        .HasForeignKey("PlanId");
+
+                    b.Navigation("Instance");
+
                     b.Navigation("Owner");
+
+                    b.Navigation("Plan");
+                });
+
+            modelBuilder.Entity("Data.Models.Plan", b =>
+                {
+                    b.HasOne("Data.Models.Instance", "Instance")
+                        .WithMany()
+                        .HasForeignKey("InstanceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Instance");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

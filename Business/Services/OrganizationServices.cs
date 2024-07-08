@@ -8,14 +8,16 @@ public class OrganizationServices
 {
     private readonly IAuthManager _authManager;
     private readonly OrganizationRepository _organizationRepository;
+    private readonly InstanceRepository _instanceRepository;
     
-    public OrganizationServices(IAuthManager authManager, OrganizationRepository organizationRepository)
+    public OrganizationServices(IAuthManager authManager, OrganizationRepository organizationRepository, InstanceRepository instanceRepository)
     {
         _authManager = authManager;
         _organizationRepository = organizationRepository;
+        _instanceRepository = instanceRepository;
     }
     
-    public bool CreateNewOrganisation(string email, string password, Organization organization)
+    public bool CreateNewOrganisation(string email, string password, Organization organization, string instanceKey)
     {
         if (!_authManager.Register(email, password))
         {
@@ -27,6 +29,7 @@ public class OrganizationServices
         if (user == null) return false;
         
         organization.Owner = user;
+        organization.InstanceId = _instanceRepository.GetByKey(instanceKey).Id;
         
         return _organizationRepository.Create(organization);
     }

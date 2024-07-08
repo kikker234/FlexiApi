@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "sv2DeFWQtkbTGfeqm+19dedNfHNvdIvTXhH57JBK6PtV0ZgpUOpTEpzPTHo80yueIS8rfoiMargGSL74iIcXeQ==",
+  "dgSpecHash": "nMRnA4owLp1JEtaPSAr2JC+3xFIbzQpDwFjf6u80pxRYosgDdpj390ihd6YQGW2adkNjjnG7cu6dcs/EzgTfZg==",
   "success": true,
   "projectFilePath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\Integration\\Integration.csproj",
   "expectedPackageFiles": [
@@ -14,6 +14,7 @@
     "C:\\Users\\jusra\\.nuget\\packages\\dnsclient\\1.7.0\\dnsclient.1.7.0.nupkg.sha512",
     "C:\\Users\\jusra\\.nuget\\packages\\fluentvalidation\\11.9.2\\fluentvalidation.11.9.2.nupkg.sha512",
     "C:\\Users\\jusra\\.nuget\\packages\\google.protobuf\\3.25.1\\google.protobuf.3.25.1.nupkg.sha512",
+    "C:\\Users\\jusra\\.nuget\\packages\\i18n\\2.1.17\\i18n.2.1.17.nupkg.sha512",
     "C:\\Users\\jusra\\.nuget\\packages\\k4os.compression.lz4\\1.3.5\\k4os.compression.lz4.1.3.5.nupkg.sha512",
     "C:\\Users\\jusra\\.nuget\\packages\\k4os.compression.lz4.streams\\1.3.5\\k4os.compression.lz4.streams.1.3.5.nupkg.sha512",
     "C:\\Users\\jusra\\.nuget\\packages\\k4os.hash.xxhash\\1.0.8\\k4os.hash.xxhash.1.0.8.nupkg.sha512",
@@ -149,6 +150,16 @@
     "C:\\Users\\jusra\\.nuget\\packages\\zstdsharp.port\\0.7.1\\zstdsharp.port.0.7.1.nupkg.sha512"
   ],
   "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'i18n 2.1.17' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "libraryId": "i18n",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
     {
       "code": "NU1701",
       "level": "Warning",

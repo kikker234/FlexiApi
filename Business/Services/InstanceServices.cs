@@ -27,7 +27,7 @@ public class InstanceServices
 
     public Instance GetInstance(string instanceKey)
     {
-        Instance instance = _instanceRepository.Get(instanceKey);
+        Instance instance = _instanceRepository.GetByKey(instanceKey);
         
         if(instance == null) throw new Exception("Instance not found");
         
@@ -36,7 +36,7 @@ public class InstanceServices
     
     public Instance GetInstance(string instanceKey, string email)
     {
-        Instance instance = _instanceRepository.Get(instanceKey);
+        Instance instance = _instanceRepository.GetByKey(instanceKey);
         
         if(instance == null) throw new Exception("Instance not found");
         if(instance.OwnerEmail != email) throw new Exception("Instance not found");
@@ -52,7 +52,7 @@ public class InstanceServices
 
     public string RegenerateInstanceKey(string instanceKey)
     {
-        Instance instance = _instanceRepository.Get(instanceKey);
+        Instance instance = _instanceRepository.GetByKey(instanceKey);
         
         if(instance == null) throw new Exception("Instance not found");
         

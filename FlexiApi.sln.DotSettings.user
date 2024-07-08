@@ -3,4 +3,6 @@
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;MSTest::D74CB58C-5674-4FBA-BFDA-FA5732202F8C::net8.0::Integration.AuthTesting.Get_EndpointsReturnSuccessAndCorrectContentType&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
+&lt;/SessionState&gt;</s:String>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=FlexiApi_002Fresources_002FValidationMessages/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/Initialized/@EntryValue">True</s:Boolean></wpf:ResourceDictionary>
