@@ -160,11 +160,11 @@ var app = builder.Build();
 var localizeOptions = app.Services.GetService<IOptions<RequestLocalizationOptions>>();
 app.UseRequestLocalization(localizeOptions.Value);
 
-if (app.Environment.IsDevelopment())
-{
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+
+string url = "http://" + app.Configuration["AppSettings:Url"] + ":" + app.Configuration["AppSettings:Port"] + "/swagger/v1/swagger.json";
+Console.WriteLine(url);
 
 app.UseAuthentication();
 app.UseAuthorization();
