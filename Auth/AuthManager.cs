@@ -13,12 +13,13 @@ public class AuthManager : IAuthManager
         _userManager = userManager;
     }
     
-    public bool Register(string email, string password)
+    public bool Register(string email, string password, Organization organization)
     {
         User user = new User
         {
             Email = email,
             UserName = email,
+            Organization = organization
         };
 
         IdentityResult result = _userManager.CreateAsync(user, password).Result;
@@ -54,6 +55,7 @@ public class AuthManager : IAuthManager
         string? token = context.Request.Headers["Authorization"];
         if (token == null) return null;
 
+        token = token.Replace("Bearer ", "");
         string? userId = TokenUtils.GetUserIdFromToken(token);
         
         return userId == null ? null : _userManager.FindByIdAsync(userId).Result;

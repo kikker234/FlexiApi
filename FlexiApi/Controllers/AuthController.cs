@@ -29,24 +29,6 @@ public class AuthController : Controller
         return Ok(ApiResponse<string>.Success(token));
     }
     
-    [HttpPost]
-    [Authorize]
-    public IActionResult Register(String email, String password)
-    {
-        try
-        {
-            HttpContext context = HttpContext;
-            User user = _authManager.GetLoggedInUser(context);
-            
-            _authManager.Register(email, password);
-            return Ok(ApiResponse<string>.Success("User registered successfully"));
-        }
-        catch (Exception e)
-        {
-            return BadRequest(ApiResponse<String>.Error(e));
-        }
-    }
-    
     [HttpGet]
     [Route("valid")]
     public IActionResult ValidateToken(String token)

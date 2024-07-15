@@ -25,7 +25,7 @@ public class CreateOrganizationValidator : FlexiValidator<CreateOrganization>
         RuleFor(dto => dto.Password)
             .NotEmpty()
             .MinimumLength(8).WithMessage("password: Wachtwoord moet minimaal 8 karakters lang zijn!");
-        
+
         RuleFor(dto => dto.RepeatPassword)
             .Equal(dto => dto.Password)
             .WithMessage("repeatPassword: Wachtwoorden komen niet overeen!");

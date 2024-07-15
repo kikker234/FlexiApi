@@ -26,25 +26,6 @@ public class OrganizationController : Controller
     [Validation(typeof(CreateOrganization))]
     public IActionResult CreateOrganization([FromBody] CreateOrganization data)
     {
-        foreach (var localizedString in _localizer.GetAllStrings())
-        {
-            Console.WriteLine(localizedString);
-        }
-        
-        if (!ModelState.IsValid)
-        {
-            Console.WriteLine(data);
-            Dictionary<string, string> errors = new();
-            
-            foreach (var (key, value) in ModelState)
-            {
-                errors.Add(key, value.Errors.First().ErrorMessage);
-                Console.WriteLine("Adding error for: " + key);
-            }
-            
-            return BadRequest(errors);
-        }
-        
         try
         {
             String email = data.Email;

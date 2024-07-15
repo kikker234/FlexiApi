@@ -106,6 +106,8 @@ public class TokenUtils
         
         JwtSecurityToken? jwtToken = GetJwtToken(token);
         
-        return jwtToken != null;
+        if (jwtToken == null) return false;
+        
+        return jwtToken.ValidTo > DateTime.UtcNow;
     }
 }

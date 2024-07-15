@@ -64,12 +64,18 @@ builder.Services.AddScoped<DbContext, FlexiContext>();
 builder.Services.AddScoped<InstanceServices>();
 builder.Services.AddScoped<InstanceRepository>();
 
+builder.Services.AddScoped<ComponentServices>();
+builder.Services.AddScoped<ComponentRepository>();
+builder.Services.AddScoped<ComponentValidator>();
+
 builder.Services.AddScoped<CustomerServices>();
+builder.Services.AddScoped<CustomerRepository>();
 
 builder.Services.AddScoped<OrganizationServices>();
 builder.Services.AddScoped<OrganizationRepository>();
 
 builder.Services.AddScoped<CreateOrganizationValidator>();
+builder.Services.AddScoped<CustomerValidator>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

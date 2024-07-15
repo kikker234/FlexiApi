@@ -19,18 +19,18 @@ public class OrganizationServices
     
     public bool CreateNewOrganisation(string email, string password, Organization organization, string instanceKey)
     {
-        if (!_authManager.Register(email, password))
+        organization.InstanceId = _instanceRepository.GetByKey(instanceKey).Id;
+        _organizationRepository.Create(organization);
+        
+        Console.WriteLine(organization.Id);
+        
+        if (!_authManager.Register(email, password, organization))
         {
             Console.WriteLine("Failed to register");
             return false;
         }
 
         User? user = _authManager.GetLoggedInUser(email, password);
-        if (user == null) return false;
-        
-        organization.Owner = user;
-        organization.InstanceId = _instanceRepository.GetByKey(instanceKey).Id;
-        
-        return _organizationRepository.Create(organization);
+        return user == null;
     }
 }
