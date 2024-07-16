@@ -11,6 +11,7 @@ using Data.Repositories;
 using FlexiApi.Attributes;
 using FlexiApi.InputModels;
 using FlexiApi.Validation;
+using i18n.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
@@ -162,6 +163,14 @@ app.UseRequestLocalization(localizeOptions.Value);
 
     app.UseSwagger();
     app.UseSwaggerUI();
+
+// run migrations
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<FlexiContext>();
+    context.Database.Migrate();
+}
 
 string url = "http://" + app.Configuration["AppSettings:Url"] + ":" + app.Configuration["AppSettings:Port"] + "/swagger/v1/swagger.json";
 Console.WriteLine(url);

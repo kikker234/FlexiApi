@@ -17,4 +17,7 @@
     <data name="PasswordRequired" xml:space="preserve">
         <value>Wachtwoord is verplicht!</value>
     </data>
+    <data name="PasswordsDoNotMatch" xml:space="preserve">
+        <value>Wachtwoorden komen niet overeen</value>
+    </data>
 </root>

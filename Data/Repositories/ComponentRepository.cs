@@ -24,8 +24,7 @@ public class ComponentRepository
         try
         {
             _context.Components.Add(component);
-            _context.SaveChanges();
-            return true;
+            return _context.SaveChanges() > 0;
         }
         catch
         {
@@ -38,8 +37,7 @@ public class ComponentRepository
         try
         {
             _context.Components.Remove(component);
-            _context.SaveChanges();
-            return true;
+            return _context.SaveChanges() > 0;
         }
         catch
         {
