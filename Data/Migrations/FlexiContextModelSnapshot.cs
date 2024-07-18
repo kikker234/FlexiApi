@@ -250,10 +250,6 @@ namespace Data.Migrations
                     b.Property<int>("OrganizationId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.HasKey("Id");
 
                     b.HasIndex("OrganizationId");
@@ -294,6 +290,10 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ComponentId");
@@ -312,7 +312,11 @@ namespace Data.Migrations
                     b.Property<int>("ComponentFieldId")
                         .HasColumnType("int");
 
-                    b.Property<string>("ValidationData")
+                    b.Property<string>("ValidationType")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ValidationValue")
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -530,7 +534,7 @@ namespace Data.Migrations
             modelBuilder.Entity("Data.Models.components.ComponentField", b =>
                 {
                     b.HasOne("Data.Models.components.Component", "Component")
-                        .WithMany("CustomComponentFields")
+                        .WithMany("Fields")
                         .HasForeignKey("ComponentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -541,7 +545,7 @@ namespace Data.Migrations
             modelBuilder.Entity("Data.Models.components.ComponentValidation", b =>
                 {
                     b.HasOne("Data.Models.components.ComponentField", "ComponentField")
-                        .WithMany()
+                        .WithMany("Validations")
                         .HasForeignKey("ComponentFieldId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -602,7 +606,12 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Models.components.Component", b =>
                 {
-                    b.Navigation("CustomComponentFields");
+                    b.Navigation("Fields");
+                });
+
+            modelBuilder.Entity("Data.Models.components.ComponentField", b =>
+                {
+                    b.Navigation("Validations");
                 });
 #pragma warning restore 612, 618
         }

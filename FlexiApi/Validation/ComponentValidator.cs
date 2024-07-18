@@ -10,9 +10,6 @@ public class ComponentValidator : FlexiValidator<Component>
     {
         RuleFor(comp => comp.Name)
             .NotEmpty();
-
-        RuleFor(comp => comp.Type)
-            .NotEmpty();
     }
     
     public override Type GetValidatorType()

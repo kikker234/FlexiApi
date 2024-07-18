@@ -58,7 +58,6 @@ public class ComponentController : Controller
         {
             Component component = new Component();
             component.Name = componentDto.Name;
-            component.Type = componentDto.Type;
             component.OrganizationId = user.OrganizationId;
             
             IList<ComponentField> fields = new List<ComponentField>();
@@ -69,7 +68,7 @@ public class ComponentController : Controller
                 fields.Add(componentField);
             }
             
-            component.CustomComponentFields = fields;
+            component.Fields = fields;
             
             _context.Components.Add(component);
             _context.SaveChanges();

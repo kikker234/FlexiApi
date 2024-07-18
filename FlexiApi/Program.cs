@@ -65,8 +65,9 @@ builder.Services.AddScoped<DbContext, FlexiContext>();
 builder.Services.AddScoped<InstanceServices>();
 builder.Services.AddScoped<InstanceRepository>();
 
+builder.Services.AddTransient<IComponentRepository, ComponentRepository>();
+builder.Services.AddTransient<ComponentRepository>();
 builder.Services.AddScoped<ComponentServices>();
-builder.Services.AddScoped<ComponentRepository>();
 builder.Services.AddScoped<ComponentValidator>();
 
 builder.Services.AddScoped<CustomerServices>();
@@ -74,6 +75,8 @@ builder.Services.AddScoped<CustomerRepository>();
 
 builder.Services.AddScoped<OrganizationServices>();
 builder.Services.AddScoped<OrganizationRepository>();
+
+builder.Services.AddScoped<EntityServices>();
 
 builder.Services.AddScoped<CreateOrganizationValidator>();
 builder.Services.AddScoped<CustomerValidator>();

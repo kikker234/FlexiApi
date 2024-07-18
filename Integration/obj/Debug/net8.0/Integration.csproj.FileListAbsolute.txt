@@ -112,7 +112,6 @@ C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\refs\Microsof
 C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\refs\Microsoft.Extensions.Configuration.KeyPerFile.dll
 C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\refs\Microsoft.Extensions.Configuration.UserSecrets.dll
 C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\refs\Microsoft.Extensions.Configuration.Xml.dll
-C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\refs\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\refs\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\refs\Microsoft.Extensions.Diagnostics.Abstractions.dll
 C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\refs\Microsoft.Extensions.Diagnostics.dll
@@ -127,9 +126,6 @@ C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\refs\Microsof
 C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\refs\Microsoft.Extensions.Hosting.Abstractions.dll
 C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\refs\Microsoft.Extensions.Hosting.dll
 C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\refs\Microsoft.Extensions.Http.dll
-C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\refs\Microsoft.Extensions.Localization.Abstractions.dll
-C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\refs\Microsoft.Extensions.Localization.dll
-C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\refs\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\refs\Microsoft.Extensions.Logging.Configuration.dll
 C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\refs\Microsoft.Extensions.Logging.Console.dll
 C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\refs\Microsoft.Extensions.Logging.Debug.dll
@@ -495,3 +491,17 @@ C:\Users\jusra\RiderProjects\FlexiApi\Integration\obj\Debug\net8.0\refint\Integr
 C:\Users\jusra\RiderProjects\FlexiApi\Integration\obj\Debug\net8.0\Integration.pdb
 C:\Users\jusra\RiderProjects\FlexiApi\Integration\obj\Debug\net8.0\Integration.genruntimeconfig.cache
 C:\Users\jusra\RiderProjects\FlexiApi\Integration\obj\Debug\net8.0\ref\Integration.dll
+C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\i18n.Domain.dll
+C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\i18n.dll
+C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
+C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\Microsoft.AspNetCore.Razor.Language.dll
+C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
+C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\Microsoft.CodeAnalysis.Razor.dll
+C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\Microsoft.Extensions.Localization.dll
+C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\Microsoft.Extensions.Localization.Abstractions.dll
+C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+C:\Users\jusra\RiderProjects\FlexiApi\Integration\bin\Debug\net8.0\nl\FlexiApi.resources.dll
