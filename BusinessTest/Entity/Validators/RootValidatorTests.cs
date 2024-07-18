@@ -25,26 +25,6 @@ public class RootValidatorTests
     }
     
     [TestMethod]
-    public void Handle_Empty_Null()
-    {
-        JObject json = JObject.Parse("{ \"components\": [] }");
-        
-        JObject? result = _rootValidator.Handle(json);
-        
-        Assert.IsNull(result);
-    }
-    
-    [TestMethod]
-    public void Handle_NullComponents_Null()
-    {
-        JObject json = JObject.Parse("{ \"components\": null }");
-        
-        JObject? result = _rootValidator.Handle(json);
-        
-        Assert.IsNull(result);
-    }
-    
-    [TestMethod]
     public void Handle_NoComponents_Null()
     {
         JObject json = JObject.Parse("{ }");

@@ -67,7 +67,7 @@ builder.Services.AddScoped<InstanceRepository>();
 
 builder.Services.AddTransient<IComponentRepository, ComponentRepository>();
 builder.Services.AddTransient<ComponentRepository>();
-builder.Services.AddScoped<ComponentServices>();
+
 builder.Services.AddScoped<ComponentValidator>();
 
 builder.Services.AddScoped<CustomerServices>();

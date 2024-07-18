@@ -10,12 +10,12 @@ namespace Business.Services;
 public class EntityServices
 {
     private readonly IComponentRepository _componentRepository;
-    
+
     public EntityServices(IComponentRepository componentRepository)
     {
         _componentRepository = componentRepository;
     }
-    
+
     public bool Import(JObject json)
     {
         AbstractHandler jsonNullValidator = new RootValidator();
@@ -30,13 +30,19 @@ public class EntityServices
         JsonComponentAdapter adapter = new JsonComponentAdapter();
         IEnumerable<Component> inputComponents = adapter.Convert(json).ToList();
         IEnumerable<Component> existingComponents = _componentRepository.GetComponents().ToList();
-        
-        // Process components
-        AddNewComponents(inputComponents, existingComponents);
-        DeleteOldComponents(inputComponents, existingComponents);
-        UpdateExistingComponents(inputComponents, existingComponents);
 
-        return true;
+        try
+        {
+            AddNewComponents(inputComponents, existingComponents);
+            DeleteOldComponents(inputComponents, existingComponents);
+            UpdateExistingComponents(inputComponents, existingComponents);
+            return true;
+        }
+        catch (Exception e)
+        {
+            Console.Error.WriteLine(e.Message);
+            return false;
+        }
     }
 
     private void AddNewComponents(IEnumerable<Component> inputComponents, IEnumerable<Component> existingComponents)
@@ -65,7 +71,8 @@ public class EntityServices
         }
     }
 
-    private void UpdateExistingComponents(IEnumerable<Component> inputComponents, IEnumerable<Component> existingComponents)
+    private void UpdateExistingComponents(IEnumerable<Component> inputComponents,
+        IEnumerable<Component> existingComponents)
     {
         var inputComponentDict = inputComponents.ToDictionary(c => c.Name);
 
