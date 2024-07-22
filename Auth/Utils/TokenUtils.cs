@@ -9,13 +9,13 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Auth;
 
-public class TokenUtils
+public class TokenUtils : ITokenUtils
 {
     public static string? SecretKey { get; set; } = null;
     public static string? Issuer { get; set; } = null;
     public static string? Audience { get; set; } = null;
 
-    public static string GenerateJwtToken(string userId)
+    public string GenerateJwtToken(string userId)
     {
         if (SecretKey == null || Issuer == null || Audience == null)
             throw new Exception("SecretKey, Issuer and Audience must be set in TokenProvider.cs");
@@ -40,7 +40,7 @@ public class TokenUtils
         return tokenHandler.WriteToken(token);
     }
     
-    public static String? GetUserIdFromToken(string? token)
+    public String? GetUserIdFromToken(string? token)
     {
         if (token == null)
         {
@@ -74,7 +74,7 @@ public class TokenUtils
         }
     }
     
-    public static JwtSecurityToken? GetJwtToken(string token)
+    public JwtSecurityToken? GetJwtToken(string token)
     {
         JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
 
@@ -100,7 +100,7 @@ public class TokenUtils
         }
     }
 
-    public static bool IsValidToken(string? token)
+    public bool IsValidToken(string? token)
     {
         if (token == null) return false;
         

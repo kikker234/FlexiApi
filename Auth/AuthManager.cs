@@ -7,10 +7,12 @@ namespace Auth;
 public class AuthManager : IAuthManager
 {
     private readonly UserManager<User> _userManager;
+    private readonly ITokenUtils _tokenUtils;
     
-    public AuthManager(UserManager<User> userManager)
+    public AuthManager(UserManager<User> userManager, ITokenUtils tokenUtils)
     {
         _userManager = userManager;
+        _tokenUtils = tokenUtils;
     }
     
     public bool Register(string email, string password, Organization organization)
@@ -37,7 +39,7 @@ public class AuthManager : IAuthManager
         User? user = await _userManager.FindByEmailAsync(email);
         if (user == null) return null;
 
-        return TokenUtils.GenerateJwtToken(user.Id);
+        return _tokenUtils.GenerateJwtToken(user.Id);
     }
 
 
@@ -56,9 +58,10 @@ public class AuthManager : IAuthManager
         if (token == null) return null;
 
         token = token.Replace("Bearer ", "");
-        string? userId = TokenUtils.GetUserIdFromToken(token);
+        string? userId = _tokenUtils.GetUserIdFromToken(token);
+        if(userId == null) return null;
         
-        return userId == null ? null : _userManager.FindByIdAsync(userId).Result;
+        return _userManager.FindByIdAsync(userId).Result;
     }
 
     public User? GetLoggedInUser(string email, string password)
@@ -68,7 +71,7 @@ public class AuthManager : IAuthManager
 
     public bool IsValidToken(string token)
     {
-        return TokenUtils.IsValidToken(token);
+        return _tokenUtils.IsValidToken(token);
     }
 
     private User? CanLogin(string email, string password)
@@ -77,9 +80,9 @@ public class AuthManager : IAuthManager
 
         if(user == null) return null;
         
-        PasswordHasher<User> ph = new PasswordHasher<User>();
+        PasswordHasher<User> hasher = new PasswordHasher<User>();
 
-        if (ph.VerifyHashedPassword(user, user.PasswordHash, password) == PasswordVerificationResult.Failed)
+        if (hasher.VerifyHashedPassword(user, user.PasswordHash, password) == PasswordVerificationResult.Failed)
             return null;
         
         return user;

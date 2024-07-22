@@ -1,4 +1,6 @@
-﻿namespace Data.Models.components;
+﻿using System.Text.Json.Serialization;
+
+namespace Data.Models.components;
 
 public class ComponentField
 {
@@ -9,5 +11,6 @@ public class ComponentField
     public IList<ComponentValidation> Validations { get; set; } = new List<ComponentValidation>();
     
     public int ComponentId { get; set; }
+    
     public Component Component { get; set; }
 }

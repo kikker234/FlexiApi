@@ -1,6 +1,7 @@
 ﻿using Business.Entity;
 using Business.Entity.adapter;
 using Business.Entity.validators;
+using Data.Models;
 using Data.Models.components;
 using Data.Repositories;
 using Newtonsoft.Json.Linq;
@@ -16,7 +17,7 @@ public class EntityServices
         _componentRepository = componentRepository;
     }
 
-    public bool Import(JObject json)
+    public bool Import(JObject json, Instance instance)
     {
         AbstractHandler jsonNullValidator = new RootValidator();
         jsonNullValidator
@@ -29,11 +30,11 @@ public class EntityServices
         // convert to Component;
         JsonComponentAdapter adapter = new JsonComponentAdapter();
         IEnumerable<Component> inputComponents = adapter.Convert(json).ToList();
-        IEnumerable<Component> existingComponents = _componentRepository.GetComponents().ToList();
+        IEnumerable<Component> existingComponents = _componentRepository.ReadAll().ToList();
 
         try
         {
-            AddNewComponents(inputComponents, existingComponents);
+            AddNewComponents(inputComponents, existingComponents, instance);
             DeleteOldComponents(inputComponents, existingComponents);
             UpdateExistingComponents(inputComponents, existingComponents);
             return true;
@@ -45,7 +46,7 @@ public class EntityServices
         }
     }
 
-    private void AddNewComponents(IEnumerable<Component> inputComponents, IEnumerable<Component> existingComponents)
+    private void AddNewComponents(IEnumerable<Component> inputComponents, IEnumerable<Component> existingComponents, Instance instance)
     {
         var existingComponentNames = existingComponents.Select(c => c.Name).ToHashSet();
 
@@ -53,6 +54,7 @@ public class EntityServices
         {
             if (!existingComponentNames.Contains(inputComponent.Name))
             {
+                inputComponent.InstanceId = instance.Id;
                 _componentRepository.Create(inputComponent);
             }
         }

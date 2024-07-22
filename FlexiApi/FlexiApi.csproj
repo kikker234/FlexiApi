@@ -41,7 +41,7 @@
         <Content Include="..\.dockerignore">
             <Link>.dockerignore</Link>
         </Content>
-        <InternalsVisibleTo Include="Integration"/>
+        <InternalsVisibleTo Include="FlexiApiTest"/>
     </ItemGroup>
 
     <ItemGroup>

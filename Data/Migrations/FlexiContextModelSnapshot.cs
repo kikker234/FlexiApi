@@ -243,16 +243,16 @@ namespace Data.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("InstanceId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("OrganizationId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("OrganizationId");
+                    b.HasIndex("InstanceId");
 
                     b.ToTable("Components");
                 });
@@ -268,9 +268,18 @@ namespace Data.Migrations
                     b.Property<int>("ComponentFieldId")
                         .HasColumnType("int");
 
+                    b.Property<int>("ComponentObjectId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("value")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ComponentFieldId");
+
+                    b.HasIndex("ComponentObjectId");
 
                     b.ToTable("ComponentData");
                 });
@@ -299,6 +308,48 @@ namespace Data.Migrations
                     b.HasIndex("ComponentId");
 
                     b.ToTable("ComponentFields");
+                });
+
+            modelBuilder.Entity("Data.Models.components.ComponentObject", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ComponentId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("CreatedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("DeletedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("UpdatedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ComponentId");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("DeletedById");
+
+                    b.HasIndex("UpdatedById");
+
+                    b.ToTable("ComponentObjects");
                 });
 
             modelBuilder.Entity("Data.Models.components.ComponentValidation", b =>
@@ -511,13 +562,13 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Models.components.Component", b =>
                 {
-                    b.HasOne("Data.Models.Organization", "Organization")
+                    b.HasOne("Data.Models.Instance", "Instance")
                         .WithMany()
-                        .HasForeignKey("OrganizationId")
+                        .HasForeignKey("InstanceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Organization");
+                    b.Navigation("Instance");
                 });
 
             modelBuilder.Entity("Data.Models.components.ComponentData", b =>
@@ -528,7 +579,15 @@ namespace Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Data.Models.components.ComponentObject", "ComponentObject")
+                        .WithMany("Data")
+                        .HasForeignKey("ComponentObjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("ComponentField");
+
+                    b.Navigation("ComponentObject");
                 });
 
             modelBuilder.Entity("Data.Models.components.ComponentField", b =>
@@ -540,6 +599,35 @@ namespace Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Component");
+                });
+
+            modelBuilder.Entity("Data.Models.components.ComponentObject", b =>
+                {
+                    b.HasOne("Data.Models.components.Component", "Component")
+                        .WithMany()
+                        .HasForeignKey("ComponentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data.Models.User", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById");
+
+                    b.HasOne("Data.Models.User", "DeletedBy")
+                        .WithMany()
+                        .HasForeignKey("DeletedById");
+
+                    b.HasOne("Data.Models.User", "UpdatedBy")
+                        .WithMany()
+                        .HasForeignKey("UpdatedById");
+
+                    b.Navigation("Component");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("DeletedBy");
+
+                    b.Navigation("UpdatedBy");
                 });
 
             modelBuilder.Entity("Data.Models.components.ComponentValidation", b =>
@@ -612,6 +700,11 @@ namespace Data.Migrations
             modelBuilder.Entity("Data.Models.components.ComponentField", b =>
                 {
                     b.Navigation("Validations");
+                });
+
+            modelBuilder.Entity("Data.Models.components.ComponentObject", b =>
+                {
+                    b.Navigation("Data");
                 });
 #pragma warning restore 612, 618
         }

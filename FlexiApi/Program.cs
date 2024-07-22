@@ -55,23 +55,27 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
         options.Password.RequireLowercase = false;
         options.User.RequireUniqueEmail = true;
     })
+    .AddUserStore<FlexiUserStore>()
     .AddEntityFrameworkStores<FlexiContext>()
     .AddDefaultTokenProviders();
 
 builder.Services.AddScoped<IAuthManager, AuthManager>();
 
 builder.Services.AddScoped<DbContext, FlexiContext>();
+builder.Services.AddTransient<ITokenUtils, TokenUtils>();
 
 builder.Services.AddScoped<InstanceServices>();
 builder.Services.AddScoped<InstanceRepository>();
 
 builder.Services.AddTransient<IComponentRepository, ComponentRepository>();
 builder.Services.AddTransient<ComponentRepository>();
-
+builder.Services.AddScoped<ComponentServices>();
 builder.Services.AddScoped<ComponentValidator>();
 
 builder.Services.AddScoped<CustomerServices>();
 builder.Services.AddScoped<CustomerRepository>();
+builder.Services.AddTransient<IComponentDataRepository, ComponentDataRepository>();
+builder.Services.AddTransient<ComponentDataRepository>();
 
 builder.Services.AddScoped<OrganizationServices>();
 builder.Services.AddScoped<OrganizationRepository>();
@@ -174,9 +178,6 @@ using (var scope = app.Services.CreateScope())
     var context = services.GetRequiredService<FlexiContext>();
     context.Database.Migrate();
 }
-
-string url = "http://" + app.Configuration["AppSettings:Url"] + ":" + app.Configuration["AppSettings:Port"] + "/swagger/v1/swagger.json";
-Console.WriteLine(url);
 
 app.UseAuthentication();
 app.UseAuthorization();

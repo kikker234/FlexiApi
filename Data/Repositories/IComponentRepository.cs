@@ -2,11 +2,7 @@
 
 namespace Data.Repositories;
 
-public interface IComponentRepository
+public interface IComponentRepository : ICrudRepository<Component>
 {
-    IEnumerable<Component> GetComponents();
-    IEnumerable<Component> GetByType(string type, int organizationId);
-    bool Create(Component component);
-    bool Delete(Component component);
-    void Update(Component existingComponent);
+    public Component? ReadByType(string type, int instanceId);
 }

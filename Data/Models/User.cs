@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Data.Models.components;
+using Microsoft.AspNetCore.Identity;
 
 namespace Data.Models;
 

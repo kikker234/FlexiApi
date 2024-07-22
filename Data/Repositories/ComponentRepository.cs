@@ -5,43 +5,64 @@ namespace Data.Repositories;
 
 public class ComponentRepository : IComponentRepository
 {
-    private readonly FlexiContext _context;
+    private readonly DbContext _context;
     
-    public ComponentRepository(FlexiContext context)
+    public ComponentRepository(DbContext context)
     {
         _context = context;
-    }
-
-    public IEnumerable<Component> GetComponents()
-    {
-        return _context.Components
-            .Include(component => component.Fields)
-            .ThenInclude(field => field.Validations);
-    } 
-    
-    public IEnumerable<Component> GetByType(string type, int organizationId)
-    {
-        return new List<Component>();
     }
     
     public bool Create(Component component)
     {
         try
         {
-            _context.Components.Add(component);
+            _context.Add(component);
             return _context.SaveChanges() > 0;
         }
-        catch
+        catch(Exception e)
         {
+            Console.WriteLine(e);
             return false;
         }
     }
 
-    public bool Delete(Component component)
+    public Component? Read(int id)
     {
         try
         {
-            _context.Components.Remove(component);
+            Component? component = _context.Find<Component>(id);
+            
+            return component;
+        } 
+        catch
+        {
+            return null;
+        }
+    }
+
+    public IEnumerable<Component> ReadAll()
+    {
+        try
+        {
+            return _context.Set<Component>().ToList();
+        }
+        catch
+        {
+            return new List<Component>();
+        }
+    }
+    
+
+    public bool Delete(Component component)
+    {
+        return Delete(component.Id);
+    }
+
+    public bool Delete(int id)
+    {
+        try
+        {
+            Component? component = Read(id);
             return _context.SaveChanges() > 0;
         }
         catch
@@ -50,15 +71,31 @@ public class ComponentRepository : IComponentRepository
         }
     }
 
-    public void Update(Component existingComponent)
+
+    public bool Update(Component existingComponent)
     {
         try 
         {
-            _context.Components.Update(existingComponent);
-            _context.SaveChanges();
+            _context.Update(existingComponent);
+            return _context.SaveChanges() > 0;
         }
         catch
         {
+            return false;
+        }
+    }
+
+    public Component? ReadByType(string type, int instanceId)
+    {
+        try
+        {
+            return _context.Set<Component>()
+                .Include(c => c.Fields)
+                .FirstOrDefault(c => c.Name == type && c.InstanceId == instanceId);
+        }
+        catch
+        {
+            return null;
         }
     }
 }

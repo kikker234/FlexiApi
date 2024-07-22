@@ -40,11 +40,12 @@ public class OrganizationController : Controller
 
             // get instance key from header from the request
             String instanceKey = Request.Headers["Instance"];
+            instanceKey = "79abd14c-63d9-4d31-a68c-fbc91280ad1a";
             
-            if(Request.Headers["Instance"].Count == 0)
+            /*if(Request.Headers["Instance"].Count == 0)
             {
                 return BadRequest(ApiResponse<string>.Error(_localizer["InstanceKeyMissing"]));
-            }
+            }*/
             
             if (!_organizationServices.CreateNewOrganisation(email, password, organization, instanceKey))
             {

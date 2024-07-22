@@ -14,6 +14,7 @@ public class FlexiContext : IdentityDbContext<User>
     public DbSet<Customer> Customers { get; set; }
     
     public DbSet<Component> Components { get; set; }
+    public DbSet<ComponentObject> ComponentObjects { get; set; }
     public DbSet<ComponentField> ComponentFields { get; set; }
     public DbSet<ComponentData> ComponentData { get; set; }
     public DbSet<ComponentValidation> ComponentValidations { get; set; }
@@ -29,5 +30,7 @@ public class FlexiContext : IdentityDbContext<User>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        
+        
     }
 }
