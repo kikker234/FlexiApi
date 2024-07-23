@@ -34,6 +34,6 @@ public class OrganizationServices
         }
 
         User? user = _authManager.GetLoggedInUser(email, password);
-        return user == null;
+        return user != null;
     }
 }
