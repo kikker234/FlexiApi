@@ -182,11 +182,11 @@ using (var scope = app.Services.CreateScope())
 
 app.UseRouting();
 app.UseHttpMetrics();
-app.MapMetrics();
 
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseCors("AllowAllOrigins");
 app.UseHttpsRedirection();
 app.MapControllers();
+app.MapMetrics();
 app.Run();
