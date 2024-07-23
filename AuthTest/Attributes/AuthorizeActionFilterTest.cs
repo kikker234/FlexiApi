@@ -43,12 +43,12 @@ public class AuthorizeActionFilterTest
 
         _httpContextMock = new Mock<HttpContext>();
         _requestMock = new Mock<HttpRequest>();
-        _context = new ActionExecutingContext(
+        /*_context = new ActionExecutingContext(
             new ActionContext(_httpContextMock.Object, new RouteData(), new ControllerActionDescriptor()),
             new List<IFilterMetadata>(),
             new Dictionary<string, object>(),
             new Mock<Controller>().Object
-        );
+        );*/
 
         _actionDescriptorMock = new Mock<ControllerActionDescriptor>();
         _context.ActionDescriptor = _actionDescriptorMock.Object;

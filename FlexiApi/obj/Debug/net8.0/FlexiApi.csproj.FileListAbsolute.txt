@@ -185,3 +185,6 @@ C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\obj\Debug\net8.0\FlexiApi.Resourc
 C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\nl\FlexiApi.resources.dll
 C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\obj\Debug\net8.0\nl\FlexiApi.resources.cs
 C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\obj\Debug\net8.0\nl\FlexiApi.resources.dll
+C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\Prometheus.NetStandard.dll
+C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\Prometheus.AspNetCore.dll
+C:\Users\jusra\RiderProjects\FlexiApi\FlexiApi\bin\Debug\net8.0\Prometheus.AspNetCore.HealthChecks.dll

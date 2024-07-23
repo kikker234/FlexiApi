@@ -9,9 +9,7 @@ using Data;
 using Data.Models;
 using Data.Repositories;
 using FlexiApi.Attributes;
-using FlexiApi.InputModels;
 using FlexiApi.Validation;
-using i18n.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
@@ -19,6 +17,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Prometheus;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<FlexiContext>(options =>
@@ -33,6 +32,8 @@ builder.Services.AddDbContext<FlexiContext>(options =>
     ServerVersion serverVersion = ServerVersion.AutoDetect(connectionString);
     options.UseMySql(connectionString, serverVersion);
 });
+
+builder.Services.AddMetrics();
 
 builder.Services.AddCors(options =>
 {
@@ -178,6 +179,10 @@ using (var scope = app.Services.CreateScope())
     var context = services.GetRequiredService<FlexiContext>();
     context.Database.Migrate();
 }
+
+app.UseRouting();
+app.UseHttpMetrics();
+app.MapMetrics();
 
 app.UseAuthentication();
 app.UseAuthorization();

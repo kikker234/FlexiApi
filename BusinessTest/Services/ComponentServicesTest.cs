@@ -72,9 +72,9 @@ public class ComponentServicesTest
         
         _testData = new Dictionary<string, string>
         {
-            {"name", "John"},
-            {"age", "25"},
-            {"email", "john@doe.com"},
+            {"name", ""},
+            {"age", ""},
+            {"email", ""},
         };
     }
 
