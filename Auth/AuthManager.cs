@@ -21,7 +21,7 @@ public class AuthManager : IAuthManager
         {
             Email = email,
             UserName = email,
-            Organization = organization
+            OrganizationId = organization.Id
         };
 
         IdentityResult result = _userManager.CreateAsync(user, password).Result;

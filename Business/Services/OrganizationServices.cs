@@ -19,7 +19,10 @@ public class OrganizationServices
     
     public bool CreateNewOrganisation(string email, string password, Organization organization, string instanceKey)
     {
-        organization.InstanceId = _instanceRepository.GetByKey(instanceKey).Id;
+        Instance? instance = _instanceRepository.GetByKey(instanceKey);
+        if (instance == null) return false;
+        
+        organization.InstanceId = instance.Id;
         _organizationRepository.Create(organization);
         
         Console.WriteLine(organization.Id);
