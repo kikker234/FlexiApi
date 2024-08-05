@@ -12,15 +12,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: 🔎 Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up SSH
+      - name: 🏗️ Set up SSH
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Deploy to VPS
+      - name: 🚀 Deploy to VPS
         run: |
           ssh -o StrictHostKeyChecking=no root@85.215.185.110 << 'EOF'
             cd /Projects/Flexi/Production
