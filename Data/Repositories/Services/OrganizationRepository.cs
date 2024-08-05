@@ -1,4 +1,5 @@
 ﻿using Data.Models;
+using Data.Utils;
 
 namespace Data.Repositories;
 
@@ -23,7 +24,7 @@ public class OrganizationRepository : ICrudRepository<Organization>
         }
     }
 
-    public Organization? Read(int id)
+    public Optional<Organization> Read(int id)
     {
         throw new NotImplementedException();
     }

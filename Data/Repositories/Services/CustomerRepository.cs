@@ -1,4 +1,5 @@
 ﻿using Data.Models;
+using Data.Utils;
 
 namespace Data.Repositories;
 
@@ -24,21 +25,20 @@ public class CustomerRepository : ICrudRepository<Customer>
         }
     }
 
-    public Customer? Read(int id)
+    public Optional<Customer> Read(int id)
     {
-        throw new NotImplementedException();
+        return Optional<Customer>.Of(_context.Customers.Find(id));
     }
 
     public IEnumerable<Customer> ReadAll()
     {
-        throw new NotImplementedException();
+        return _context.Customers;
     }
 
     public bool Update(Customer t)
     {
         try
         {
-            Console.WriteLine("Updating customer with id: " + t.Id + "...");
             _context.Customers.Update(t);
             return _context.SaveChanges() > 0;
         } 
@@ -50,12 +50,28 @@ public class CustomerRepository : ICrudRepository<Customer>
 
     public bool Delete(Customer t)
     {
-        throw new NotImplementedException();
+        try
+        {
+            _context.Customers.Remove(t);
+            return _context.SaveChanges() > 0;
+        } 
+        catch (Exception e)
+        {
+            return false;
+        }
     }
 
     public bool Delete(int id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            _context.Customers.Remove(_context.Customers.Find(id));
+            return _context.SaveChanges() > 0;
+        } 
+        catch (Exception e)
+        {
+            return false;
+        }
     }
 
     public IEnumerable<Customer> GetAll(int userOrganizationId)

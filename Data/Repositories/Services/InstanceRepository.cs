@@ -1,4 +1,5 @@
 ﻿using Data.Models;
+using Data.Utils;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data.Repositories;
@@ -26,9 +27,9 @@ public class InstanceRepository : ICrudRepository<Instance>
         }
     }
 
-    public Instance? Read(int id)
+    public Optional<Instance> Read(int id)
     {
-        return _context.Instances.Find(id);
+        return Optional<Instance>.Of(_context.Instances.Find(id));
     }
 
     public IEnumerable<Instance> ReadAll()
@@ -70,15 +71,13 @@ public class InstanceRepository : ICrudRepository<Instance>
     {
         try
         {
-            Instance? instance = Read(id);
-            if (instance != null)
-            {
-                _context.Instances.Remove(instance);
-                _context.SaveChanges();
-                return true;
-            }
-
-            return false;
+            Optional<Instance> instance = Read(id);
+            if (instance.IsEmpty())
+                return false;
+            
+            _context.Instances.Remove(instance.GetValue());
+            _context.SaveChanges();
+            return true;
         }
         catch (Exception e)
         {

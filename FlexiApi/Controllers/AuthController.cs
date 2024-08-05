@@ -26,6 +26,7 @@ public class AuthController : Controller
         if (token == null)
             return BadRequest(ApiResponse<string>.Error("Invalid credentials"));
 
+        
         return Ok(ApiResponse<string>.Success(token));
     }
     
@@ -33,8 +34,6 @@ public class AuthController : Controller
     [Route("valid")]
     public IActionResult ValidateToken(String token)
     {
-        return Ok();
-        
         bool isValid = _authManager.IsValidToken(token);
         
         return Ok(ApiResponse<bool>.Success(isValid));

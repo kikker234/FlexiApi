@@ -1,4 +1,6 @@
-﻿using Data.Models.components;
+﻿using Data.Models;
+using Data.Models.components;
+using Data.Utils;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data.Repositories;
@@ -26,17 +28,17 @@ public class ComponentRepository : IComponentRepository
         }
     }
 
-    public Component? Read(int id)
+    public Optional<Component> Read(int id)
     {
         try
         {
             Component? component = _context.Find<Component>(id);
             
-            return component;
+            return Optional<Component>.Of(component);
         } 
         catch
         {
-            return null;
+            return Optional<Component>.Empty();
         }
     }
 
@@ -55,15 +57,27 @@ public class ComponentRepository : IComponentRepository
 
     public bool Delete(Component component)
     {
-        return Delete(component.Id);
+        try
+        {
+            _context.Remove(component);
+            return _context.SaveChanges() > 0;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     public bool Delete(int id)
     {
         try
         {
-            Component? component = Read(id);
-            return _context.SaveChanges() > 0;
+            Optional<Component> component = Read(id);
+            
+            if (component.IsEmpty())
+                return false;
+
+            return Delete(component.GetValue());
         }
         catch
         {

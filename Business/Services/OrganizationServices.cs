@@ -25,8 +25,6 @@ public class OrganizationServices
         organization.InstanceId = instance.Id;
         _organizationRepository.Create(organization);
         
-        Console.WriteLine(organization.Id);
-        
         if (!_authManager.Register(email, password, organization))
         {
             Console.WriteLine("Failed to register");
