@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JFZycGNmLravisSJZZgDEXzYzm+0sjRxbcAEKjzhl3aSjhv7RLA7+ILLJerUiX7oRuh7u059MYUJ3U18SqRCug==",
+  "dgSpecHash": "8CDl7RN6+5gHDsAuHX7Cy11HxJNkKGxkJuRzFxCao2jcWuNGN/ySgglj4MuGnl+WuWOH1w1iXb7D37cGTywH1g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\FlexiApi\\FlexiApi.csproj",
+  "projectFilePath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\FlexiApi\\FlexiApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jusra\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\jusra\\.nuget\\packages\\azure.data.appconfiguration\\1.4.1\\azure.data.appconfiguration.1.4.1.nupkg.sha512",

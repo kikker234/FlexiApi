@@ -5774,11 +5774,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\BusinessTest\\BusinessTest.csproj",
+      "projectUniqueName": "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\BusinessTest\\BusinessTest.csproj",
       "projectName": "BusinessTest",
-      "projectPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\BusinessTest\\BusinessTest.csproj",
+      "projectPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\BusinessTest\\BusinessTest.csproj",
       "packagesPath": "C:\\Users\\jusra\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\BusinessTest\\obj\\",
+      "outputPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\BusinessTest\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -5799,8 +5799,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\Business\\Business.csproj": {
-              "projectPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\Business\\Business.csproj"
+            "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\Business\\Business.csproj": {
+              "projectPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\Business\\Business.csproj"
             }
           }
         }

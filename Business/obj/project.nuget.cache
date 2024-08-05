@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kCb1eQQETI6VxQnVs4mVnVoIuXbRf2W1+M3gITe93Fon4MFtpTCS9x5KiTc0IGslv5EV6+YPipdFTj4xXpwVgQ==",
+  "dgSpecHash": "oRz6JRbDcXc3m/3N1csFeFN054BgdrQvaBqDAgLoK3yl2IY7CxhP+G+Va5mcpT/CRxMTMJ5EYR0swWT944kfog==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\Business\\Business.csproj",
+  "projectFilePath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\Business\\Business.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jusra\\.nuget\\packages\\microsoft.aspnet.mvc\\5.3.0\\microsoft.aspnet.mvc.5.3.0.nupkg.sha512",
     "C:\\Users\\jusra\\.nuget\\packages\\microsoft.aspnet.razor\\3.3.0\\microsoft.aspnet.razor.3.3.0.nupkg.sha512",

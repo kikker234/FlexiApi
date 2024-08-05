@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JBI0kjTSMOniFIkP81fcBumP8ia8yLsXwrPrMNrR4FNoWEwHmUVIri9jStO5BoPzY0k9vhrX3jQo0wAqs6thOA==",
+  "dgSpecHash": "8fB9BapoPQE5Ld9Ba1nYFqR0EQd3LRCOIIaSvjDJ/jXVcn8QynfNy7m2Izvc86/bD+KLGxHYKtIXlsnz+zh0RA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\DataTest\\DataTest.csproj",
+  "projectFilePath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\DataTest\\DataTest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jusra\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
     "C:\\Users\\jusra\\.nuget\\packages\\microsoft.codecoverage\\17.6.0\\microsoft.codecoverage.17.6.0.nupkg.sha512",

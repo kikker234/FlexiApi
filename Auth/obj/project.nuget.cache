@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "RCLr/Dl2fOEE4eWCjqyKEuse8SaPgbQMGYLgJWkvBxg8JOq5FV7sDOCksW4WMTz+oBS9rYCijGeBRLA28r8lxA==",
+  "dgSpecHash": "QbYUfSjy6kQagwxaMSX1c5S6usCJISBXCDnaeRVpzxKj18yKtHaEZ4EzhH1HiPrN/qetc4jNSsvjwwbTo4j+tA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\Auth\\Auth.csproj",
+  "projectFilePath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\Auth\\Auth.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jusra\\.nuget\\packages\\microsoft.aspnet.mvc\\5.3.0\\microsoft.aspnet.mvc.5.3.0.nupkg.sha512",
     "C:\\Users\\jusra\\.nuget\\packages\\microsoft.aspnet.razor\\3.3.0\\microsoft.aspnet.razor.3.3.0.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\BusinessTest\\BusinessTest.csproj": {}
+    "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\BusinessTest\\BusinessTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\Auth\\Auth.csproj": {
+    "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\Auth\\Auth.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\Auth\\Auth.csproj",
+        "projectUniqueName": "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\Auth\\Auth.csproj",
         "projectName": "Auth",
-        "projectPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\Auth\\Auth.csproj",
+        "projectPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\Auth\\Auth.csproj",
         "packagesPath": "C:\\Users\\jusra\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\Auth\\obj\\",
+        "outputPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\Auth\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,8 +32,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\Data\\Data.csproj": {
-                "projectPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\Data\\Data.csproj"
+              "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\Data\\Data.csproj": {
+                "projectPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\Data\\Data.csproj"
               }
             }
           }
@@ -85,14 +85,14 @@
         }
       }
     },
-    "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\BusinessTest\\BusinessTest.csproj": {
+    "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\BusinessTest\\BusinessTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\BusinessTest\\BusinessTest.csproj",
+        "projectUniqueName": "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\BusinessTest\\BusinessTest.csproj",
         "projectName": "BusinessTest",
-        "projectPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\BusinessTest\\BusinessTest.csproj",
+        "projectPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\BusinessTest\\BusinessTest.csproj",
         "packagesPath": "C:\\Users\\jusra\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\BusinessTest\\obj\\",
+        "outputPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\BusinessTest\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -113,8 +113,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\Business\\Business.csproj": {
-                "projectPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\Business\\Business.csproj"
+              "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\Business\\Business.csproj": {
+                "projectPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\Business\\Business.csproj"
               }
             }
           }
@@ -178,14 +178,14 @@
         }
       }
     },
-    "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\Business\\Business.csproj": {
+    "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\Business\\Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\Business\\Business.csproj",
+        "projectUniqueName": "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\Business\\Business.csproj",
         "projectName": "Business",
-        "projectPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\Business\\Business.csproj",
+        "projectPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\Business\\Business.csproj",
         "packagesPath": "C:\\Users\\jusra\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\Business\\obj\\",
+        "outputPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\Business\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -206,11 +206,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\Auth\\Auth.csproj": {
-                "projectPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\Auth\\Auth.csproj"
+              "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\Auth\\Auth.csproj": {
+                "projectPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\Auth\\Auth.csproj"
               },
-              "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\Data\\Data.csproj": {
-                "projectPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\Data\\Data.csproj"
+              "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\Data\\Data.csproj": {
+                "projectPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\Data\\Data.csproj"
               }
             }
           }
@@ -250,14 +250,14 @@
         }
       }
     },
-    "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\Data\\Data.csproj": {
+    "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\Data\\Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\Data\\Data.csproj",
+        "projectUniqueName": "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\Data\\Data.csproj",
         "projectName": "Data",
-        "projectPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\Data\\Data.csproj",
+        "projectPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\Data\\Data.csproj",
         "packagesPath": "C:\\Users\\jusra\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi\\Data\\obj\\",
+        "outputPath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
