@@ -24,6 +24,7 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no root@85.215.185.110 << 'EOF'
             cd /Projects/Flexi/Production
-            git pull origin master
+            git restore .
+            git checkout origin master
             systemctl restart flexi
           EOF
