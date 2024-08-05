@@ -22,9 +22,18 @@ jobs:
 
       - name: 🚀 Deploy to VPS
         run: |
-          ssh -o StrictHostKeyChecking=no root@85.215.185.110 << 'EOF'
-            cd /Projects/Flexi/Production
+          BRANCH_NAME=${GITHUB_REF##*/}
+          DEPLOY_DIR=""
+
+          if [ "$BRANCH_NAME" = "main" ] || [ "$BRANCH_NAME" = "master" ]; then
+            DEPLOY_DIR="/Projects/Flexi/Production"
+          else
+            DEPLOY_DIR="/Projects/Flexi/Dev"
+          fi
+
+          ssh -o StrictHostKeyChecking=no root@85.215.185.110 << EOF
+            cd $DEPLOY_DIR
             git restore .
-            git pull origin master
+            git pull origin $BRANCH_NAME
             systemctl restart flexi
           EOF
