@@ -38,6 +38,6 @@ jobs:
             cd $DEPLOY_DIR
             git restore .
             git pull origin $BRANCH_NAME
-            dotnet build
+            dotnet publish
             systemctl restart $SERVICE_NAME
           EOF
