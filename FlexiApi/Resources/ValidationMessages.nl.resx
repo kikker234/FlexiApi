@@ -20,4 +20,7 @@
     <data name="PasswordsDoNotMatch" xml:space="preserve">
         <value>Wachtwoorden komen niet overeen</value>
     </data>
+    <data name="InstanceKeyMissing" xml:space="preserve">
+        <value>Instance key is niet gevonden!</value>
+    </data>
 </root>

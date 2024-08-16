@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Globalization;
+using System.Reflection;
 using System.Text;
 using Auth;
 using Auth.Attributes;
@@ -18,6 +19,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Prometheus;
+using Serilog;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<FlexiContext>(options =>
@@ -25,15 +27,24 @@ builder.Services.AddDbContext<FlexiContext>(options =>
     string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
     if (connectionString is null)
-    {
         throw new InvalidEnumArgumentException("Connection string not found");
-    }
 
     ServerVersion serverVersion = ServerVersion.AutoDetect(connectionString);
     options.UseMySql(connectionString, serverVersion);
 });
-
 builder.Services.AddMetrics();
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.AddDebug();
+builder.Logging.SetMinimumLevel(LogLevel.Debug); // Zorg ervoor dat dit niveau correct is ingesteld
+builder.Services.AddLogging();
+builder.Host.UseSerilog((context, configuration) =>
+    configuration.ReadFrom.Configuration(context.Configuration));
+
+builder.Logging.AddConsole(options =>
+{
+    options.LogToStandardErrorThreshold = LogLevel.Debug;
+});
 
 builder.Services.AddCors(options =>
 {
@@ -46,7 +57,7 @@ builder.Services.AddCors(options =>
         });
 });
 
-builder.Services.AddIdentity<User, IdentityRole>(options => 
+builder.Services.AddIdentity<User, IdentityRole>(options =>
     {
         // Configure Identity options here
         options.Password.RequireDigit = true;
@@ -59,6 +70,7 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
     .AddUserStore<FlexiUserStore>()
     .AddEntityFrameworkStores<FlexiContext>()
     .AddDefaultTokenProviders();
+
 
 builder.Services.AddScoped<IAuthManager, AuthManager>();
 
@@ -145,7 +157,8 @@ builder.Services.AddSwaggerGen(swagger =>
         Scheme = "Bearer",
         BearerFormat = "JWT",
         In = ParameterLocation.Header,
-        Description = "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 12345abcdef\"",
+        Description =
+            "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 12345abcdef\"",
     });
     swagger.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
@@ -158,8 +171,7 @@ builder.Services.AddSwaggerGen(swagger =>
                     Id = "Bearer"
                 }
             },
-            new string[] {}
-
+            new string[] { }
         }
     });
 });
@@ -168,9 +180,8 @@ var app = builder.Build();
 
 var localizeOptions = app.Services.GetService<IOptions<RequestLocalizationOptions>>();
 app.UseRequestLocalization(localizeOptions.Value);
-
-    app.UseSwagger();
-    app.UseSwaggerUI();
+app.UseSwagger();
+app.UseSwaggerUI();
 
 // run migrations
 using (var scope = app.Services.CreateScope())
@@ -180,6 +191,7 @@ using (var scope = app.Services.CreateScope())
     context.Database.Migrate();
 }
 
+app.UseSerilogRequestLogging();
 app.UseRouting();
 app.UseHttpMetrics();
 

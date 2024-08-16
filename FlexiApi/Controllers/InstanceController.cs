@@ -18,7 +18,6 @@ public class InstanceController : Controller
     }
 
     [HttpPost]
-    // [Authorize]
     [Validation(typeof(Instance))]
     public IActionResult CreateInstance([FromBody] Instance instance)
     {
@@ -69,6 +68,24 @@ public class InstanceController : Controller
         {
             string newKey = _instanceServices.RegenerateInstanceKey(instanceKey);
             return Ok(ApiResponse<string>.Success(newKey));
+        }
+        catch (Exception e)
+        {
+            return BadRequest(ApiResponse<string>.Error(e));
+        }
+    }
+    
+    [HttpDelete]
+    public IActionResult DeleteInstance(string instanceKey)
+    {
+        try
+        {
+            Instance instance = _instanceServices.GetInstance(instanceKey);
+
+            if (!_instanceServices.DeleteInstance(instance))
+                throw new Exception("Failed to delete instance");    
+            
+            return Ok(ApiResponse<string>.Success("Instance deleted successfully"));
         }
         catch (Exception e)
         {

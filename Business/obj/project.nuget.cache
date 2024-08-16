@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "oRz6JRbDcXc3m/3N1csFeFN054BgdrQvaBqDAgLoK3yl2IY7CxhP+G+Va5mcpT/CRxMTMJ5EYR0swWT944kfog==",
+  "dgSpecHash": "/7AXMsBGvLaLcUL8TdcfLQ3lc/ddEbdDoLWhpsYLGVD8FFv4cpR1hSw/D72n1jnkNAxJyP3BaDTSoFNJJj7Wcg==",
   "success": true,
   "projectFilePath": "C:\\Users\\jusra\\RiderProjects\\FlexiApi2\\Business\\Business.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\jusra\\.nuget\\packages\\fluentresults\\3.16.0\\fluentresults.3.16.0.nupkg.sha512",
     "C:\\Users\\jusra\\.nuget\\packages\\microsoft.aspnet.mvc\\5.3.0\\microsoft.aspnet.mvc.5.3.0.nupkg.sha512",
     "C:\\Users\\jusra\\.nuget\\packages\\microsoft.aspnet.razor\\3.3.0\\microsoft.aspnet.razor.3.3.0.nupkg.sha512",
     "C:\\Users\\jusra\\.nuget\\packages\\microsoft.aspnet.webpages\\3.3.0\\microsoft.aspnet.webpages.3.3.0.nupkg.sha512",
@@ -100,7 +101,7 @@
     "C:\\Users\\jusra\\.nuget\\packages\\system.text.regularexpressions\\4.1.0\\system.text.regularexpressions.4.1.0.nupkg.sha512",
     "C:\\Users\\jusra\\.nuget\\packages\\system.threading\\4.0.11\\system.threading.4.0.11.nupkg.sha512",
     "C:\\Users\\jusra\\.nuget\\packages\\system.threading.tasks\\4.0.11\\system.threading.tasks.4.0.11.nupkg.sha512",
-    "C:\\Users\\jusra\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.1\\system.threading.tasks.extensions.4.5.1.nupkg.sha512",
+    "C:\\Users\\jusra\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\jusra\\.nuget\\packages\\system.xml.readerwriter\\4.0.11\\system.xml.readerwriter.4.0.11.nupkg.sha512",
     "C:\\Users\\jusra\\.nuget\\packages\\system.xml.xdocument\\4.0.11\\system.xml.xdocument.4.0.11.nupkg.sha512"
   ],

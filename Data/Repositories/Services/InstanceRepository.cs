@@ -76,8 +76,7 @@ public class InstanceRepository : ICrudRepository<Instance>
                 return false;
             
             _context.Instances.Remove(instance.GetValue());
-            _context.SaveChanges();
-            return true;
+            return _context.SaveChanges() > 0;
         }
         catch (Exception e)
         {
