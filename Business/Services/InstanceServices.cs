@@ -17,7 +17,7 @@ public class InstanceServices
         instance.Key = GenerateInstanceKey();
         
         _instanceRepository.Create(instance);   
-        return Guid.NewGuid().ToString();
+        return instance.Key;
     }
 
     public string GenerateInstanceKey()
@@ -52,7 +52,7 @@ public class InstanceServices
 
     public string RegenerateInstanceKey(string instanceKey)
     {
-        Instance instance = _instanceRepository.GetByKey(instanceKey);
+        Instance? instance = _instanceRepository.GetByKey(instanceKey);
         
         if(instance == null) throw new Exception("Instance not found");
         
@@ -60,5 +60,10 @@ public class InstanceServices
         _instanceRepository.Update(instance);
         
         return instance.Key;
+    }
+
+    public bool DeleteInstance(Instance instance)
+    {
+        return _instanceRepository.Delete(instance);
     }
 }

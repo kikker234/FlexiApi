@@ -24,16 +24,20 @@ jobs:
         run: |
           BRANCH_NAME=${GITHUB_REF##*/}
           DEPLOY_DIR=""
+          SERVICE_NAME=""
 
           if [ "$BRANCH_NAME" = "main" ] || [ "$BRANCH_NAME" = "master" ]; then
             DEPLOY_DIR="/Projects/Flexi/Production"
+            SERVICE_NAME="flexi"
           else
             DEPLOY_DIR="/Projects/Flexi/Dev"
+            SERVICE_NAME="flexi_dev"
           fi
 
           ssh -o StrictHostKeyChecking=no root@85.215.185.110 << EOF
             cd $DEPLOY_DIR
             git restore .
             git pull origin $BRANCH_NAME
-            systemctl restart flexi
+            dotnet publish
+            systemctl restart $SERVICE_NAME
           EOF

@@ -1,8 +1,7 @@
 ﻿using Auth;
-using Auth.Attributes;
-using Data.Models;
 using FlexiApi.Utils;
 using Microsoft.AspNetCore.Mvc;
+using Serilog.Extensions.Logging;
 
 namespace FlexiApi.Controllers;
 
@@ -12,10 +11,12 @@ public class AuthController : Controller
 {
     
     private readonly IAuthManager _authManager;
+    private readonly Serilog.ILogger _logger;
     
-    public AuthController(IAuthManager authManager)
+    public AuthController(IAuthManager authManager, Serilog.ILogger logger)
     {
         _authManager = authManager;
+        _logger = logger;
     }
 
     [HttpGet]
@@ -34,7 +35,11 @@ public class AuthController : Controller
     [Route("valid")]
     public IActionResult ValidateToken(String token)
     {
+        _logger.Information("Checking token validity");
         bool isValid = _authManager.IsValidToken(token);
+
+        _logger.Information("Token is valid: {isValid}", isValid);
+        _logger.Fatal(":NM_peepoRedAlarm:");
         
         return Ok(ApiResponse<bool>.Success(isValid));
     }
