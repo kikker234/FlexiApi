@@ -10,6 +10,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="FluentResults" Version="3.16.0" />
         <PackageReference Include="FluentValidation" Version="11.9.2"/>
         <PackageReference Include="I18N" Version="2.1.17"/>
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.6"/>
@@ -35,6 +36,7 @@
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
         <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.2"/>
         <PackageReference Include="prometheus-net.AspNetCore.HealthChecks" Version="8.2.1" />
+        <PackageReference Include="Serilog.AspNetCore" Version="8.0.2" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
     </ItemGroup>
 
@@ -74,6 +76,10 @@
             <AutoGen>True</AutoGen>
             <DependentUpon>ValidationMessages.nl.resx</DependentUpon>
         </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Logs\" />
     </ItemGroup>
 
 </Project>

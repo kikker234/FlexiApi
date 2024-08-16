@@ -69,6 +69,15 @@ namespace FlexiApi.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Instance key is not found!.
+        /// </summary>
+        internal static string InstanceKeyMissing {
+            get {
+                return ResourceManager.GetString("InstanceKeyMissing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password is required!.
         /// </summary>
         internal static string PasswordRequired {

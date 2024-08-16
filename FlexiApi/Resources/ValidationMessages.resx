@@ -27,4 +27,7 @@
     <data name="PasswordsDoNotMatch" xml:space="preserve">
         <value>Passwords do not match</value>
     </data>
+    <data name="InstanceKeyMissing" xml:space="preserve">
+        <value>Instance key is not found!</value>
+    </data>
 </root>
