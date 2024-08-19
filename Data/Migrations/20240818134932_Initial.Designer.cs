@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(FlexiContext))]
-    [Migration("20240711061256_added-blank-component-type")]
-    partial class addedblankcomponenttype
+    [Migration("20240818134932_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -246,38 +246,48 @@ namespace Data.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("ComponentType")
-                        .IsRequired()
-                        .HasMaxLength(13)
-                        .HasColumnType("varchar(13)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<int>("InstanceId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("OrganizationId")
+                    b.HasKey("Id");
+
+                    b.HasIndex("InstanceId");
+
+                    b.ToTable("Components");
+                });
+
+            modelBuilder.Entity("Data.Models.components.ComponentData", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Type")
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ComponentFieldId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ComponentObjectId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("value")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrganizationId");
+                    b.HasIndex("ComponentFieldId");
 
-                    b.ToTable("Components");
+                    b.HasIndex("ComponentObjectId");
 
-                    b.HasDiscriminator<string>("ComponentType").HasValue("Component");
-
-                    b.UseTphMappingStrategy();
+                    b.ToTable("ComponentData");
                 });
 
-            modelBuilder.Entity("Data.Models.components.CustomComponentField", b =>
+            modelBuilder.Entity("Data.Models.components.ComponentField", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -288,14 +298,11 @@ namespace Data.Migrations
                     b.Property<int>("ComponentId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsRequired")
-                        .HasColumnType("tinyint(1)");
-
                     b.Property<string>("Key")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Value")
+                    b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -303,7 +310,75 @@ namespace Data.Migrations
 
                     b.HasIndex("ComponentId");
 
-                    b.ToTable("CustomComponentField");
+                    b.ToTable("ComponentFields");
+                });
+
+            modelBuilder.Entity("Data.Models.components.ComponentObject", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ComponentId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("CreatedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("DeletedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("UpdatedById")
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ComponentId");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("DeletedById");
+
+                    b.HasIndex("UpdatedById");
+
+                    b.ToTable("ComponentObjects");
+                });
+
+            modelBuilder.Entity("Data.Models.components.ComponentValidation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ComponentFieldId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ValidationType")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ValidationValue")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ComponentFieldId");
+
+                    b.ToTable("ComponentValidations");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -438,45 +513,6 @@ namespace Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Data.Models.components.Blank", b =>
-                {
-                    b.HasBaseType("Data.Models.components.Component");
-
-                    b.HasDiscriminator().HasValue("Blank");
-                });
-
-            modelBuilder.Entity("Data.Models.components.Plannable", b =>
-                {
-                    b.HasBaseType("Data.Models.components.Component");
-
-                    b.Property<int>("Duration")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(65,30)");
-
-                    b.HasDiscriminator().HasValue("Plannable");
-                });
-
-            modelBuilder.Entity("Data.Models.components.Rentable", b =>
-                {
-                    b.HasBaseType("Data.Models.components.Component");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(65,30)");
-
-                    b.Property<int>("TimePeriod")
-                        .HasColumnType("int");
-
-                    b.ToTable("Components", t =>
-                        {
-                            t.Property("Price")
-                                .HasColumnName("Rentable_Price");
-                        });
-
-                    b.HasDiscriminator().HasValue("Rentable");
-                });
-
             modelBuilder.Entity("Data.Models.Customer", b =>
                 {
                     b.HasOne("Data.Models.Organization", "Organization")
@@ -529,24 +565,83 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Models.components.Component", b =>
                 {
-                    b.HasOne("Data.Models.Organization", "Organization")
+                    b.HasOne("Data.Models.Instance", "Instance")
                         .WithMany()
-                        .HasForeignKey("OrganizationId")
+                        .HasForeignKey("InstanceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Organization");
+                    b.Navigation("Instance");
                 });
 
-            modelBuilder.Entity("Data.Models.components.CustomComponentField", b =>
+            modelBuilder.Entity("Data.Models.components.ComponentData", b =>
+                {
+                    b.HasOne("Data.Models.components.ComponentField", "ComponentField")
+                        .WithMany()
+                        .HasForeignKey("ComponentFieldId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data.Models.components.ComponentObject", "ComponentObject")
+                        .WithMany("Data")
+                        .HasForeignKey("ComponentObjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ComponentField");
+
+                    b.Navigation("ComponentObject");
+                });
+
+            modelBuilder.Entity("Data.Models.components.ComponentField", b =>
                 {
                     b.HasOne("Data.Models.components.Component", "Component")
-                        .WithMany("CustomComponentFields")
+                        .WithMany("Fields")
                         .HasForeignKey("ComponentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Component");
+                });
+
+            modelBuilder.Entity("Data.Models.components.ComponentObject", b =>
+                {
+                    b.HasOne("Data.Models.components.Component", "Component")
+                        .WithMany()
+                        .HasForeignKey("ComponentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data.Models.User", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById");
+
+                    b.HasOne("Data.Models.User", "DeletedBy")
+                        .WithMany()
+                        .HasForeignKey("DeletedById");
+
+                    b.HasOne("Data.Models.User", "UpdatedBy")
+                        .WithMany()
+                        .HasForeignKey("UpdatedById");
+
+                    b.Navigation("Component");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("DeletedBy");
+
+                    b.Navigation("UpdatedBy");
+                });
+
+            modelBuilder.Entity("Data.Models.components.ComponentValidation", b =>
+                {
+                    b.HasOne("Data.Models.components.ComponentField", "ComponentField")
+                        .WithMany("Validations")
+                        .HasForeignKey("ComponentFieldId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ComponentField");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -602,7 +697,17 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Models.components.Component", b =>
                 {
-                    b.Navigation("CustomComponentFields");
+                    b.Navigation("Fields");
+                });
+
+            modelBuilder.Entity("Data.Models.components.ComponentField", b =>
+                {
+                    b.Navigation("Validations");
+                });
+
+            modelBuilder.Entity("Data.Models.components.ComponentObject", b =>
+                {
+                    b.Navigation("Data");
                 });
 #pragma warning restore 612, 618
         }

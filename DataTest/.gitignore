@@ -19,13 +19,11 @@
 ####################
 UpgradeLog.XML
 _UpgradeReport_Files/
-
 ###############
 # Directories #
 ###############
 bin/
 obj/
-Logs/
 TestResults/
 ###################
 # Web publish log #
