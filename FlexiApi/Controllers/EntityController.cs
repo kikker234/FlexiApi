@@ -29,8 +29,7 @@ public class EntityController : Controller
         JObject json = JObject.Parse(body);
 
         User? user = _authManager.GetLoggedInUser(HttpContext);
-        if (user == null) 
-            return Unauthorized();
+        if (user == null) return Unauthorized();
 
         Instance instance = user.Organization.Instance;
 
