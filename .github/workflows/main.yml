@@ -36,7 +36,6 @@ jobs:
 
           ssh -o StrictHostKeyChecking=no root@85.215.185.110 << EOF
             cd $DEPLOY_DIR
-            git restore .
             git pull origin $BRANCH_NAME
             dotnet publish
             systemctl restart $SERVICE_NAME
