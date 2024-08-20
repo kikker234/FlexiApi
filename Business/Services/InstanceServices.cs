@@ -45,9 +45,9 @@ public class InstanceServices
     }
 
 
-    public void UpdateInstance(Instance instance)
+    public bool UpdateInstance(Instance instance)
     {
-        _instanceRepository.Update(instance);
+        return _instanceRepository.Update(instance);
     }
 
     public string RegenerateInstanceKey(string instanceKey)

@@ -66,7 +66,11 @@ public class InstanceController : Controller
         
         try
         {
-            _instanceServices.UpdateInstance(instance);
+            if (!_instanceServices.UpdateInstance(instance))
+            {
+                _logger.Warning("Failed to update instance with key: {key}", instance.Key);
+                return BadRequest(ApiResponse<string>.Error("Failed to update instance"));
+            }
             
             _logger.Information("Instance updated successfully with key: {key}", instance.Key);
             return Ok(ApiResponse<string>.Success("Instance updated successfully"));
