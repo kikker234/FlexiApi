@@ -1,4 +1,5 @@
 ﻿using Business.Services;
+using BusinessTest.Exceptions;
 using Data.Models;
 using Data.Models.components;
 using Data.Repositories;
@@ -72,9 +73,9 @@ public class ComponentServicesTest
         
         _testData = new Dictionary<string, string>
         {
-            {"name", ""},
-            {"age", ""},
-            {"email", ""},
+            {"name", "Peter"},
+            {"age", "34"},
+            {"email", "jusraaijmakers@gmail.com"},
         };
     }
 
@@ -101,7 +102,7 @@ public class ComponentServicesTest
     public void Create_ComponentNotFound_Exception()
     {
         // Arrange
-        _componentRepository.Setup(x => x.ReadByType(It.IsAny<string>(), It.IsAny<int>())).Returns((Component)null);
+        _componentRepository.Setup(x => x.ReadByType(It.IsAny<string>(), It.IsAny<int>())).Returns((Component?) null);
 
         User user = new User();
         Instance instance = new Instance();
@@ -109,7 +110,7 @@ public class ComponentServicesTest
         user.Organization.Instance = instance;
         
         // Act
-        Assert.ThrowsException<Exception>(() => _componentServices.Create(user, instance, "person", _testData));
+        Assert.ThrowsException<ComponentNotFoundException>(() => _componentServices.Create(user, instance, "person", _testData));
     }
     
     [TestMethod]
@@ -126,7 +127,7 @@ public class ComponentServicesTest
         _testData["email"] = "";
         
         // Act
-        Assert.ThrowsException<Exception>(() => _componentServices.Create(user, instance, "person", _testData));
+        Assert.ThrowsException<InvalidFieldDataException>(() => _componentServices.Create(user, instance, "person", _testData));
     }
     
     [TestMethod]

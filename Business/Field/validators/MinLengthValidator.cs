@@ -20,7 +20,7 @@ public class MinLengthValidator : AbstractFieldValidator
             return false;
         }
         
-        if(value.Length <= length)
+        if(value.Length < length)
         {
             return false;
         }

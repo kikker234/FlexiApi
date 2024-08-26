@@ -25,7 +25,7 @@ public class MinLengthValidatorTest
     public void ValidateField_InputMeetsLengthRequirement_ReturnsTrue()
     {
         // Arrange
-        string value = "12345"; // Length is 5
+        string value = "12345";
 
         // Act
         bool result = _validator.ValidateField(value);

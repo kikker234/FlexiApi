@@ -5,6 +5,7 @@ using BusinessTest.Exceptions;
 using Data.Models;
 using Data.Models.components;
 using Data.Repositories;
+using Microsoft.Extensions.Logging;
 
 namespace Business.Services;
 

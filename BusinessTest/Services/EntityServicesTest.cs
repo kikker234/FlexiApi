@@ -2,6 +2,7 @@
 using Data.Models;
 using Data.Models.components;
 using Data.Repositories;
+using FluentResults;
 using JetBrains.Annotations;
 using Moq;
 using Newtonsoft.Json.Linq;
@@ -45,12 +46,12 @@ public class EntityServicesTest
 
         JObject jsonObject = JObject.Parse(json);
 
-        bool result = _entityServices.Import(jsonObject, _instance);
+        Result result = _entityServices.Import(jsonObject, _instance);
 
         _componentRepository.Verify(c => c.Create(It.IsAny<Component>()), Times.Once);
         _componentRepository.Verify(c => c.Delete(It.IsAny<Component>()), Times.Once);
         _componentRepository.Verify(c => c.Update(It.IsAny<Component>()), Times.Never);
-        Assert.IsTrue(result);
+        Assert.IsTrue(result.IsSuccess);
     }
 
     [TestMethod]
@@ -62,13 +63,13 @@ public class EntityServicesTest
             "{\n  \"components\": [\n    {\n      \"name\": \"person\",\n      \"fields\": [\n        {\n          \"name\": \"name\",\n          \"type\": \"string\",\n          \"validation\": [\n            {\n              \"required\": true\n            },\n            {\n              \"length\": 5\n            }\n          ]\n        },\n        {\n          \"name\": \"age\",\n          \"type\": \"number\",\n          \"default\": 0\n        }\n      ]\n    }\n  ]\n}";
 
         JObject jsonObject = JObject.Parse(json);
-        bool result = _entityServices.Import(jsonObject, _instance);
+        Result result = _entityServices.Import(jsonObject, _instance);
 
         _componentRepository.Verify(c => c.Create(It.IsAny<Component>()), Times.Once);
         _componentRepository.Verify(c => c.Delete(It.IsAny<Component>()), Times.Never);
         _componentRepository.Verify(c => c.Update(It.IsAny<Component>()), Times.Never);
 
-        Assert.IsTrue(result);
+        Assert.IsTrue(result.IsSuccess);
     }
 
     [TestMethod]
@@ -78,13 +79,13 @@ public class EntityServicesTest
             "{\n  \"components\": []\n}";
 
         JObject jsonObject = JObject.Parse(json);
-        bool result = _entityServices.Import(jsonObject, _instance);
+        Result result = _entityServices.Import(jsonObject, _instance);
 
         _componentRepository.Verify(c => c.Create(It.IsAny<Component>()), Times.Never);
         _componentRepository.Verify(c => c.Delete(It.IsAny<Component>()), Times.Once);
         _componentRepository.Verify(c => c.Update(It.IsAny<Component>()), Times.Never);
 
-        Assert.IsTrue(result);
+        Assert.IsTrue(result.IsSuccess);
     }
 
     [TestMethod]
@@ -95,17 +96,17 @@ public class EntityServicesTest
 
         JObject jsonObject = JObject.Parse(json);
 
-        bool result = _entityServices.Import(jsonObject, _instance);
+        Result result = _entityServices.Import(jsonObject, _instance);
 
         _componentRepository.Verify(c => c.Create(It.IsAny<Component>()), Times.Never);
         _componentRepository.Verify(c => c.Delete(It.IsAny<Component>()), Times.Never);
         _componentRepository.Verify(c => c.Update(It.IsAny<Component>()), Times.Once);
 
-        Assert.IsTrue(result);
+        Assert.IsTrue(result.IsSuccess);
     }
 
     [TestMethod]
-    public void Import_InvalidJson_True()
+    public void Import_InvalidJson_ThrowException()
     {
         string json =
             "{\n  \"components\": [\n    {\n      \"name\": \"person\",\n      \"fields\": []\n    }\n  ]\n}";
